@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Nav from "../components/Nav";
 
 const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
-}
+  return <div>home</div>;
+};
 
-export default HomePage
+export default HomePage;
