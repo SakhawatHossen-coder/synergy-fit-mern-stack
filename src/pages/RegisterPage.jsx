@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAxios from "../hooks/useAxios";
 
 const RegisterPage = () => {
+  const axiosCommon = useAxios();
   const { createUser, googleLogin, loading, user, updateUserProfile } =
     useAuth();
   const navigate = useNavigate();
@@ -16,12 +18,20 @@ const RegisterPage = () => {
   } = useForm();
   const onSubmit = async (data) => {
     let { name, email, photo, password } = data;
-    console.log(data);
+    // console.log(data);
+    const userInfo = {
+      name,
+      email,
+    };
     try {
       await createUser(email, password);
       await updateUserProfile(name, photo);
-      navigate("/login");
-      toast.success("Successfully Login");
+      const res = await axiosCommon.post("/user", userInfo);
+      console.log(res);
+      if (res.data.insertedId) {
+        toast.success("User Created Successfully!");
+        navigate("/login");
+      }
     } catch (error) {
       console.error(error);
       toast.error("Login Failed!");
@@ -335,7 +345,9 @@ const RegisterPage = () => {
                 </div>
               </form>
               <div>
-                <Link to="/login" className="underline">Login</Link>
+                <Link to="/login" className="underline">
+                  Login
+                </Link>
               </div>
             </div>
           </div>
