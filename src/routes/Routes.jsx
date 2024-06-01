@@ -7,6 +7,7 @@ import Layout from "../layouts/Layout";
 import Dashboard from "../dashboard/Dashboard";
 import DashboardLayout from "../layouts/DashboardLayout";
 import DashStat from "../dashboard/DashStat";
+import BeTrainerPage from "../pages/BeTrainerPage";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "add",
-        element: <p>404 add</p>,
+        element: <BeTrainerPage />,
       },
     ],
   },
