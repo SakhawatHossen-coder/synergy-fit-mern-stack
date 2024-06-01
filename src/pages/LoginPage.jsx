@@ -3,10 +3,14 @@ import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Button } from "@material-tailwind/react";
+import useAxios from "../hooks/useAxios";
 const LoginPage = () => {
   const { login, googleLogin, setLoading, user, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosCommon = useAxios();
+
   const {
     register,
     handleSubmit,
@@ -25,6 +29,27 @@ const LoginPage = () => {
       console.error(error);
       toast.error(error.message);
       setLoading(false);
+    }
+  };
+  // handle google signin
+  const handleGoogleSignIn = async () => {
+    try {
+      const res = await googleLogin();
+      const userInfo = {
+        email: res?.user?.email,
+        name: res?.user?.displayName,
+      };
+      const result = await axiosCommon.post("/user", userInfo);
+      // return console.log();
+      console.log(result);
+      if (result.data.insertedId) {
+        toast.success("User Created Successfully!");
+        navigate("/");
+        console.log("db save");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message);
     }
   };
   return (
@@ -46,6 +71,7 @@ const LoginPage = () => {
             </button>
           </div>
         </div>
+
         <div className="flex w-1/2 justify-center items-center bg-white">
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">
@@ -117,6 +143,22 @@ const LoginPage = () => {
                 </Link>
               </h2>
             </span>
+            <div>
+              <Button
+                size="lg"
+                variant="outlined"
+                color="blue-gray"
+                className="flex items-center gap-3 my-5"
+                onClick={handleGoogleSignIn}
+              >
+                <img
+                  src="https://docs.material-tailwind.com/icons/google.svg"
+                  alt="metamask"
+                  className="h-6 w-6"
+                />
+                Continue with Google
+              </Button>
+            </div>
           </form>
         </div>
       </div>
