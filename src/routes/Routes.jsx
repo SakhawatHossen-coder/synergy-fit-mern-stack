@@ -4,6 +4,9 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ErrorPage from "../pages/ErrorPage";
 import Layout from "../layouts/Layout";
+import Dashboard from "../dashboard/Dashboard";
+import DashboardLayout from "../layouts/DashboardLayout";
+import DashStat from "../dashboard/DashStat";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +25,20 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterPage />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <DashStat />,
+      },
+      {
+        path: "add",
+        element: <p>404 add</p>,
       },
     ],
   },
