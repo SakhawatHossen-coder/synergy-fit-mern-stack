@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <>
@@ -12,18 +14,21 @@ const Banner = () => {
         </div>
 
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
-          <h1 className="text-5xl font-bold leading-tight mb-4">
-            Welcome to Our Awesome Website
+          <h1 className="text-4xl font-bold leading-tight mb-4">
+            Unleash Your Potential: Achieve Your Fitness Goals with{" "}
+            <span className="text-blue-200">SynergyFit</span>
           </h1>
           <p className="text-lg text-gray-300 mb-8">
-            Discover amazing features and services that await you.
+            We are revolutionizing the way you approach health and wellness. At
+            SynergyFit, we're passionate about empowering individuals to lead
+            active, fulfilling lives.
           </p>
-          <a
-            href="#"
+          <Link
+            to="/classes"
             className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
           >
-            Get Started
-          </a>
+            Classes Page
+          </Link>
         </div>
       </div>
     </>

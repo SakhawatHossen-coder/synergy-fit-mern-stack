@@ -79,9 +79,7 @@ const Nav = () => {
             </ul>
           </div>
           <NavLink to="/">
-            <span className="btn btn-ghost text-xl jost">
-              The Wandering Fork
-            </span>
+            <span className="btn btn-ghost text-xl">SynergyFit</span>
           </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
