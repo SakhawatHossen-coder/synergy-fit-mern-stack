@@ -27,6 +27,10 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <RegisterPage />,
       },
+      {
+        path: "/trainer",
+        element: <BeTrainerPage />,
+      },
     ],
   },
   {
@@ -36,10 +40,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashStat />,
-      },
-      {
-        path: "add",
-        element: <BeTrainerPage />,
       },
     ],
   },

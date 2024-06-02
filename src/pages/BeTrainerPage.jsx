@@ -1,15 +1,55 @@
 import { Spinner } from "@material-tailwind/react";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Select from "react-select";
+import useAuth from "../hooks/useAuth";
 
 const BeTrainerPage = () => {
-  let loading = null;
+  // let loading = null;
+  const { user, loading } = useAuth();
+  const options = [
+    { value: "Saturday", label: "Saturday" },
+    { value: "Sunday", label: "Sunday" },
+    { value: "Monday", label: "Monday" },
+    { value: "Tuesday", label: "Tuesday" },
+    { value: "Wednesday", label: "Wednesday" },
+    { value: "Thursday ", label: "Thursday" },
+    { value: "Friday", label: "Friday" },
+  ];
+  const [weekVal, setWeekVal] = useState([]);
   const {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      selectedOption: "", // Or an initial value from your options array
+    },
+  });
+  const onSubmit = async (data) => {
+    // console.log(data);
+    const { age, availableTime, fullName, image } = data;
+    const newTrainerInfo = {
+      ...data,
+      email: user?.email,
+      weekDays: weekVal,
+    };
+    console.log(newTrainerInfo);
+    
+  };
+  const handleChange = (selectedOption) => {
+    // console.log("handleChange", selectedOption); // Access the selected value
+    let newDays = [];
+    selectedOption.map((val) => {
+      // console.log(val.value);
+      let newVal = val.value;
+      newDays.push(newVal);
+    });
+    setWeekVal(newDays);
+    // console.log(newDays);
+  };
   return (
     <>
       <div className="isolate bg-white px-6 py-4 sm:py-32 lg:px-8">
@@ -22,16 +62,16 @@ const BeTrainerPage = () => {
           </p>
         </div>
         <form
-          // onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
           className="mx-auto mt-6 max-w-xl sm:mt-20"
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
               <label
-                htmlFor="Room Name"
+                htmlFor="Full Name"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Room Name
+                Full Name
               </label>
               <div className="mt-2.5">
                 <input
@@ -40,16 +80,36 @@ const BeTrainerPage = () => {
                   id="first-name"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("Room Name", { required: true })}
+                  {...register("fullName", { required: true })}
                 />
               </div>
             </div>
             <div>
               <label
-                htmlFor="Price per Night"
+                htmlFor="Email"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Price per Night
+                Email
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="email"
+                  name="last-name"
+                  id="last-name"
+                  autoComplete="family-name"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register("email")}
+                  defaultValue={user?.email}
+                  disabled
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="Age"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Age
               </label>
               <div className="mt-2.5">
                 <input
@@ -58,17 +118,16 @@ const BeTrainerPage = () => {
                   id="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("Price per Night", { required: true })}
+                  {...register("age", { required: true })}
                 />
               </div>
             </div>
-
             <div>
               <label
                 htmlFor="Image"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Image
+                Profile Image
               </label>
               <div className="mt-2.5">
                 <input
@@ -77,48 +136,94 @@ const BeTrainerPage = () => {
                   id="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("Availability", { required: true })}
+                  {...register("image", { required: true })}
                 />
               </div>
             </div>
 
-            <div>
+            <div className="flex gap-2">
               <label
-                htmlFor="Availability"
+                htmlFor="skills"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                Availability
+                Skills
+              </label>
+              <label className="inline-flex items-center mt-3">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-teal-600"
+                  {...register("option1")}
+                />
+                <span className="ml-2 text-gray-700">strength training</span>
+              </label>
+
+              <label className="inline-flex items-center mt-3">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-teal-600"
+                  {...register("option2")}
+                />
+                <span className="ml-2 text-gray-700">Yoga</span>
+              </label>
+
+              <label className="inline-flex items-center mt-3">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-teal-600"
+                  {...register("option3")}
+                />
+                <span className="ml-2 text-gray-700">HIIT</span>
+              </label>
+            </div>
+            <div>
+              <label
+                htmlFor="Available Days a Week"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Available Days a Week
+              </label>
+              <Select
+                // defaultValue={[options[2], options[3]]}
+                isMulti
+                onChange={handleChange}
+                options={options}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                // {...register("weekDays", { multiple: true })}
+              ></Select>
+              {/* {options?.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+            
+              {/* <select {...register("selectedOptions", { multiple: true })}>
+                {options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select> */}
+            </div>
+
+            <div>
+              <label
+                htmlFor="Available time in a day"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Available time in a day
               </label>
               <div className="mt-2.5">
                 <input
                   type="text"
-                  name="last-name"
                   id="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("Availability", { required: true })}
+                  {...register("availableTime", { required: true })}
                 />
               </div>
             </div>
-            <div>
-              <label
-                htmlFor="Special Offers"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Special Offers
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="text"
-                  name="last-name"
-                  id="last-name"
-                  autoComplete="family-name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("Special Offers", { required: true })}
-                />
-              </div>
-            </div>
-            <div className="sm:col-span-2">
+            {/* <div className="sm:col-span-2">
               <label
                 htmlFor="Short Description"
                 className="block text-sm font-semibold leading-6 text-gray-900"
@@ -134,7 +239,7 @@ const BeTrainerPage = () => {
                   {...register("Short Description", { required: true })}
                 ></textarea>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-10">
             <button
@@ -142,11 +247,7 @@ const BeTrainerPage = () => {
               type="submit"
               className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {loading ? (
-                <Spinner className="animate-spin m-auto" />
-              ) : (
-                "Add Room"
-              )}
+              {loading ? <Spinner className="animate-spin m-auto" /> : "Apply"}
             </button>
           </div>
         </form>
