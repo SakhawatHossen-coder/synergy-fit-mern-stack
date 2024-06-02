@@ -22,7 +22,15 @@ const BeTrainerPage = () => {
     { value: "Thursday ", label: "Thursday" },
     { value: "Friday", label: "Friday" },
   ];
+  const slotOptions = [
+    { value: "8:00AM - 10:00AM", label: "8:00AM - 10:00AM" },
+    { value: "10:00AM - 12:00PM", label: "10:00AM - 12:00PM" },
+    { value: "12:00PM - 02:00PM", label: "12:00PM - 02:00PM" },
+    { value: "2:00PM - 4:00PM", label: "2:00PM - 4:00PM" },
+    { value: "4:00PM - 6:00PM", label: "4:00PM - 6:00PM" },
+  ];
   const [weekVal, setWeekVal] = useState([]);
+  const [slotVal, setSlotVal] = useState([]);
   const {
     register,
     handleSubmit,
@@ -43,7 +51,7 @@ const BeTrainerPage = () => {
     },
     onSuccess: () => {
       console.log("data saved successfully");
-      toast.success("Trainer Data Saved!");
+      toast.success("Your Application for Trainer Successful!");
       // navigate("/")
     },
   });
@@ -55,6 +63,7 @@ const BeTrainerPage = () => {
       ...data,
       email: user?.email,
       weekDays: weekVal,
+      slot: slotVal,
       status: "pending",
     };
     console.log(newTrainerInfo);
@@ -77,6 +86,15 @@ const BeTrainerPage = () => {
     });
     setWeekVal(newDays);
     // console.log(newDays);
+  };
+  const handleChangeDay = (selectedOption) => {
+    let newSlot = [];
+    selectedOption.map((val) => {
+      // console.log(val.value);
+      let newVal = val.value;
+      newSlot.push(newVal);
+    });
+    setSlotVal(newSlot);
   };
   return (
     <>
@@ -152,6 +170,42 @@ const BeTrainerPage = () => {
             </div>
             <div>
               <label
+                htmlFor="Brief BioData"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Brief BioData
+              </label>
+              <div className="mt-2.5">
+                <textarea
+                  type="number"
+                  name="last-name"
+                  id="last-name"
+                  autoComplete="family-name"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register("bioData", { required: true })}
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="Expertise"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Expertise
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="text"
+                  name="last-name"
+                  id="last-name"
+                  autoComplete="family-name"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register("expertise", { required: true })}
+                />
+              </div>
+            </div>
+            <div>
+              <label
                 htmlFor="Image"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
@@ -165,6 +219,22 @@ const BeTrainerPage = () => {
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   {...register("image", { required: true })}
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="Years of Experience"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Years of Experience
+              </label>
+              <div className="mt-2.5">
+                <input
+                  type="number"
+                  id="last-name"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  {...register("experience", { required: true })}
                 />
               </div>
             </div>
@@ -217,21 +287,7 @@ const BeTrainerPage = () => {
                 options={options}
                 className="basic-multi-select"
                 classNamePrefix="select"
-                // {...register("weekDays", { multiple: true })}
               ></Select>
-              {/* {options?.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-            
-              {/* <select {...register("selectedOptions", { multiple: true })}>
-                {options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select> */}
             </div>
 
             <div>
@@ -242,13 +298,21 @@ const BeTrainerPage = () => {
                 Available time in a day
               </label>
               <div className="mt-2.5">
-                <input
+                {/* <input
                   type="text"
                   id="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   {...register("availableTime", { required: true })}
-                />
+                /> */}
+                <Select
+                  // defaultValue={[options[2], options[3]]}
+                  isMulti
+                  onChange={handleChangeDay}
+                  options={slotOptions}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                ></Select>
               </div>
             </div>
             {/* <div className="sm:col-span-2">
