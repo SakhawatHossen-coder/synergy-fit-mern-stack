@@ -3,10 +3,16 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import useAuth from "../hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const BeTrainerPage = () => {
   // let loading = null;
-  const { user, loading } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  let navigate = useNavigate();
+  const { user, loading, setLoading } = useAuth();
   const options = [
     { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
@@ -28,6 +34,20 @@ const BeTrainerPage = () => {
       selectedOption: "", // Or an initial value from your options array
     },
   });
+  //data send to db
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async (trainerData) => {
+      let { data } = await axiosSecure.post(`/trainer`, trainerData);
+      return data;
+    },
+    onSuccess: () => {
+      console.log("data saved successfully");
+      toast.success("Trainer Data Saved!");
+      // navigate("/")
+    },
+  });
+
   const onSubmit = async (data) => {
     // console.log(data);
     const { age, availableTime, fullName, image } = data;
@@ -35,9 +55,17 @@ const BeTrainerPage = () => {
       ...data,
       email: user?.email,
       weekDays: weekVal,
+      status: "pending",
     };
     console.log(newTrainerInfo);
-    
+
+    try {
+      //post to server
+      await mutateAsync(newTrainerInfo);
+    } catch (error) {
+      toast.error("Trainer Data Failed!");
+      setLoading(false);
+    }
   };
   const handleChange = (selectedOption) => {
     // console.log("handleChange", selectedOption); // Access the selected value
