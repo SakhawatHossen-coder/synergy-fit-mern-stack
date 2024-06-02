@@ -9,6 +9,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import DashStat from "../dashboard/DashStat";
 import BeTrainerPage from "../pages/BeTrainerPage";
 import AllTrainersPage from "../pages/AllTrainersPage";
+import DetailsTrainer from "../pages/DetailsTrainer";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/trainer",
         element: <BeTrainerPage />,
+      },
+      {
+        path: `/trainer-details/:id`,
+        element: <DetailsTrainer />,
       },
     ],
   },
