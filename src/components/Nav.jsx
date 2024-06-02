@@ -15,7 +15,7 @@ const Nav = () => {
           </Button>
         </li>
       </NavLink>
-      <NavLink to="/rooms">
+      <NavLink to="/all-trainers">
         <li>
           <Button color="cyan" className="btn pop">
             All Trainer
