@@ -10,6 +10,7 @@ import DashStat from "../dashboard/DashStat";
 import BeTrainerPage from "../pages/BeTrainerPage";
 import AllTrainersPage from "../pages/AllTrainersPage";
 import DetailsTrainer from "../pages/DetailsTrainer";
+import TrainerBookingPage from "../pages/TrainerBookingPage";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "/trainer",
         element: <BeTrainerPage />,
+      },
+      {
+        path: "/trainer-booking-page",
+        element: <TrainerBookingPage />,
       },
       {
         path: `/trainer-details/:id`,
