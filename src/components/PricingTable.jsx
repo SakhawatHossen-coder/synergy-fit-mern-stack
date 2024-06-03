@@ -1,4 +1,6 @@
 import React from "react";
+import { BiDumbbell, BiRun } from "react-icons/bi";
+import { GrYoga } from "react-icons/gr";
 
 const PricingTable = () => {
   return (
@@ -20,7 +22,7 @@ const PricingTable = () => {
             <div className="w-full px-4">
               <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
                 <span className="font-semibold text-lg text-primary mb-2 block">
-                  Pricing Table
+                  Unleash Your Potential with Our Flexible Membership Options:
                 </span>
                 <h2
                   className="
@@ -35,8 +37,7 @@ const PricingTable = () => {
                   Our Pricing Plan
                 </h2>
                 <p className="text-base text-body-color">
-                  There are many variations of passages of Lorem Ipsum available
-                  but the majority have suffered alteration in some form.
+                  Find the perfect fit for your fitness goals and budget!
                 </p>
               </div>
             </div>
@@ -61,12 +62,12 @@ const PricingTable = () => {
                "
               >
                 <span className="text-primary font-semibold text-lg block mb-4">
-                  Personal
+                  Basic: Kickstart Your Journey
                 </span>
                 <h2 className="font-bold text-dark mb-5 text-[42px]">
-                  $59
+                  $29
                   <span className="text-base text-body-color font-medium">
-                    / year
+                    / month
                   </span>
                 </h2>
                 <p
@@ -77,27 +78,49 @@ const PricingTable = () => {
                   border-b border-[#F2F2F2]
                   "
                 >
-                  Perfect for using in a personal website or a client project.
+                  Get started with the essentials:
                 </p>
                 <div className="mb-7">
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    1 User
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    All UI components
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Lifetime access
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Free updates
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Use on 1 (one) project
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    3 Months support
-                  </p>
+                  <div className="flex gap-4 justify-center">
+                    <div>
+                      {" "}
+                      <BiDumbbell size={24} />
+                    </div>
+                    <div>
+                      {" "}
+                      <p className="text-base  text-body-color leading-loose mb-1">
+                        Access to all our top-notch gym facilities during
+                        regular operating hours.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 justify-center">
+                    <div>
+                      {" "}
+                      <BiRun size={24} />
+                    </div>
+                    <div>
+                      {" "}
+                      <p className="text-base  text-body-color leading-loose mb-1">
+                        Convenience: Enjoy access to locker rooms and showers
+                        for a post-workout refresh.
+                      </p>
+                    </div>
+                  </div>
+                  <div className=" flex gap-4 justify-center">
+                    <div>
+                      {" "}
+                      <GrYoga size={24} />
+                    </div>
+                    <div>
+                      {" "}
+                      <p className="text-base  text-body-color leading-loose mb-1">
+                        Cardio & Strength Training: Utilize our extensive range
+                        of cardio and strength training equipment to build a
+                        strong foundation
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <a
                   href="javascript:void(0)"
@@ -112,11 +135,12 @@ const PricingTable = () => {
                   rounded-md
                   text-center
                   p-4
+                  hover:duration-700
                   hover:text-white hover:bg-primary hover:border-primary
                   transition
                   "
                 >
-                  Choose Personal
+                  Join Now
                 </a>
                 <div>
                   <span className="absolute right-0 top-7 z-[-1]">
