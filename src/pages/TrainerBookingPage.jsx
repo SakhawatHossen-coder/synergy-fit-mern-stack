@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router-dom";
+import PricingTable from "../components/PricingTable";
 
 const TrainerBookingPage = () => {
-  return (
-    <div>TrainerBookingPage</div>
-  )
-}
+  const { time } = useParams();
+  const { trainer } = useParams();
+  console.log("timeee", time);
+  return <div>TrainerBookingPage
+     <PricingTable/>
+  </div>;
+};
 
-export default TrainerBookingPage
+export default TrainerBookingPage;

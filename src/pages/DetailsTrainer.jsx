@@ -22,6 +22,8 @@ const DetailsTrainer = () => {
   });
   if (isLoading) return <Spinner />;
   console.log(trainer);
+     
+
   return (
     <div>
       DetailsTrainer

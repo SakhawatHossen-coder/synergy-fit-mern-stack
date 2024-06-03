@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         element: <BeTrainerPage />,
       },
       {
-        path: "/trainer-booking-page",
+        path: "/trainer-booking-page/:trainer/:time",
         element: <TrainerBookingPage />,
       },
       {

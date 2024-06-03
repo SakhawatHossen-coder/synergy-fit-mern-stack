@@ -1,10 +1,20 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TrainerSlotCard = ({ trainer }) => {
+  let timeSlot = [
+    "8:00AM - 10:00AM",
+    "10:00AM - 12:00PM",
+    "12:00PM - 02:00PM",
+    "2:00PM - 4:00PM",
+    "4:00PM - 6:00PM",
+  ];
   let navigate = useNavigate();
   const inputRef = useRef(null);
   const [selectedslot, setselectedSlot] = useState();
+  const { time } = useParams();
+  const initialIndex = timeSlot.indexOf(time);
+  const [tabIndex, setTabIndex] = useState(initialIndex);
 
   const {
     fullName,
@@ -18,7 +28,7 @@ const TrainerSlotCard = ({ trainer }) => {
     weekDays,
     expertise,
   } = trainer;
-  console.log(weekDays);
+  // console.log(weekDays);
   let days = [
     "Saturday",
     "Sunday",
@@ -28,9 +38,12 @@ const TrainerSlotCard = ({ trainer }) => {
     "Thursday",
     "Friday",
   ];
-  const handleBooking = () => {
-    navigate("/trainer-booking-page");
-    setselectedSlot(inputRef.current.innerText);
+  const handleBooking = (trainer, time) => {
+    let newTrainer = trainer.split(" ").join("");
+    navigate(`/trainer-booking-page/${newTrainer}/${time.current.innerText}`);
+    // setselectedSlot(inputRef.current.innerText);
+    // setTabIndex(time)
+    // console.log(time.current.innerHTML)
   };
   // let matchedDays = days.filter((day) => weekDays.includes(day));
   // console.log(matchedDays);
@@ -72,8 +85,10 @@ const TrainerSlotCard = ({ trainer }) => {
                           </div>
                           <div className="bottom flex-grow h-30 py-1 w-full cursor-pointer">
                             {slot?.map((single, idx) => (
-                              <div
-                                onClick={handleBooking}
+                              <button
+                                onClick={() =>
+                                  handleBooking(fullName, inputRef)
+                                }
                                 key={idx}
                                 className="event space-x-2 bg-purple-400 text-white rounded p-2 text-md mb-1"
                               >
@@ -83,7 +98,7 @@ const TrainerSlotCard = ({ trainer }) => {
                                 <span ref={inputRef} className="time space-x-2">
                                   {single}
                                 </span>
-                              </div>
+                              </button>
                             ))}
                           </div>
                         </div>
