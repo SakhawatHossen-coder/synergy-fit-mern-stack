@@ -1,5 +1,6 @@
 import React from "react";
 import Teamcard from "./Teamcard";
+import { Typography } from "@material-tailwind/react";
 
 const TeamSection = () => {
   const TrainerInfo = [
@@ -30,7 +31,15 @@ const TeamSection = () => {
   ];
   return (
     <>
-      <div>TeamSection</div>
+      <div className="my-10">
+        <Typography variant="h2" color="teal">
+          The Masterminds Behind the Magic
+        </Typography>
+        <Typography variant="h4">
+          Meet the passionate people behind{" "}
+          <span className="text-teal-500 font-bold">SynargyFit</span>
+        </Typography>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {TrainerInfo.map((trainer, idx) => (
           <Teamcard key={idx} trainer={trainer} />
@@ -41,4 +50,3 @@ const TeamSection = () => {
 };
 
 export default TeamSection;
-
