@@ -23,25 +23,25 @@ const Dashboard = () => {
           <div className="flex flex-col flex-1 overflow-y-auto">
             <nav className="flex-1 px-2 space-y-4 py-4 bg-blue-900">
               <NavLink
-                to="add"
+                to="all-trainers-admin"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
                     isActive ? "bg-teal-900" : "text-black"
                   }`
                 }
               >
-                <TbGymnastics/>
-                Be A Trainer
+                <TbGymnastics />
+                All Trainers
               </NavLink>
               <NavLink
-                to="add"
+                to="applied-trainers-admin"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
                     isActive ? "bg-teal-900" : "text-black"
                   }`
                 }
               >
-                Be A Trainer
+                Applied Trainer
               </NavLink>
               <NavLink
                 to="add"

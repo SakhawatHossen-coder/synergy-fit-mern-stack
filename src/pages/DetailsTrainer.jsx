@@ -1,10 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { Spinner, Typography } from "@material-tailwind/react";
+import { Button, Spinner, Typography } from "@material-tailwind/react";
 import TrainerInfoCard from "../components/TrainerInfoCard";
 import TrainerSlotCard from "../components/TrainerSlotCard";
+import { FaDumbbell } from "react-icons/fa6";
 
 const DetailsTrainer = () => {
   const { id } = useParams();
@@ -22,11 +23,15 @@ const DetailsTrainer = () => {
   });
   if (isLoading) return <Spinner />;
   console.log(trainer);
-     
 
   return (
     <div>
-      DetailsTrainer
+      <Link to="/become-trainer" className="flex justify-end">
+        <Button className="flex gap-2 items-center" size="lg">
+          <FaDumbbell />
+          Be A Trainer
+        </Button>
+      </Link>
       <div id="trainer-info">
         <TrainerInfoCard trainer={trainer} />
       </div>

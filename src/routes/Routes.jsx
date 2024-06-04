@@ -12,6 +12,8 @@ import AllTrainersPage from "../pages/AllTrainersPage";
 import DetailsTrainer from "../pages/DetailsTrainer";
 import TrainerBookingPage from "../pages/TrainerBookingPage";
 import ForumPage from "../pages/ForumPage";
+import AllTrainersAdmin from "../dashboard/AllTrainersAdmin";
+import AppliedTrainersAdmin from "../dashboard/AppliedTrainersAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +38,7 @@ export const router = createBrowserRouter([
         element: <AllTrainersPage />,
       },
       {
-        path: "/trainer",
+        path: "/become-trainer",
         element: <BeTrainerPage />,
       },
       {
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashStat />,
+      },
+      {
+        path: "all-trainers-admin",
+        element: <AllTrainersAdmin />,
+      },
+      {
+        path: "applied-trainers-admin",
+        element: <AppliedTrainersAdmin />,
       },
     ],
   },
