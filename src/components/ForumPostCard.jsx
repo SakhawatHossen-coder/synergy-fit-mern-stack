@@ -3,7 +3,6 @@ import React from 'react'
 const ForumPostCard = () => {
   return (
     <div>
-
 <div className="p-4">
   <div className="bg-white border rounded-sm max-w-md">
     <div className="flex items-center px-4 py-3">
