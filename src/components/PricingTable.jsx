@@ -1,8 +1,145 @@
 import React from "react";
-import { BiDumbbell, BiRun } from "react-icons/bi";
+import { BiCool, BiDumbbell, BiRun } from "react-icons/bi";
+import { GiGymBag } from "react-icons/gi";
 import { GrYoga } from "react-icons/gr";
+import { MdSpatialTracking } from "react-icons/md";
+import { PiNewspaperClipping } from "react-icons/pi";
+import { TbSocial, TbYoga } from "react-icons/tb";
 
 const PricingTable = () => {
+  let basic = (
+    <>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <BiDumbbell size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Access to all our top-notch gym facilities during regular operating
+            hours.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <BiRun size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Convenience: Enjoy access to locker rooms and showers for a
+            post-workout refresh.
+          </p>
+        </div>
+      </div>
+      <div className=" flex gap-4 justify-center">
+        <div>
+          {" "}
+          <GrYoga size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Cardio & Strength Training: Utilize our extensive range of cardio
+            and strength training equipment to build a strong foundation
+          </p>
+        </div>
+      </div>
+    </>
+  );
+  let standard = (
+    <>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <GiGymBag size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Group Fitness Fix: Take your fitness to the next level with
+            unlimited access to a variety of group fitness classes like yoga,
+            spinning, and Zumba. Find the perfect class to motivate and
+            challenge you.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <TbSocial size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Community Connection: Immerse yourself in a vibrant fitness
+            community and discover the power of working out together.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <PiNewspaperClipping size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Access to Newsletter
+          </p>
+        </div>
+      </div>
+    </>
+  );
+  let premium = (
+    <>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <MdSpatialTracking size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Personalized Guidance: Unlock your full potential with access to
+            personalized training sessions from our certified trainers. They'll
+            create a customized workout plan to help you achieve your specific
+            goals.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <BiCool size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Premium Amenities: Relax and rejuvenate after your workout with
+            access to exclusive amenities like a sauna or steam room.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4 justify-center">
+        <div>
+          {" "}
+          <TbYoga size={24} />
+        </div>
+        <div>
+          {" "}
+          <p className="text-base  text-body-color leading-loose mb-1">
+            Holistic Wellness: Invest in your well-being with exclusive
+            discounts on additional services like massage therapy and nutrition
+            counseling.
+          </p>
+        </div>
+      </div>
+    </>
+  );
   return (
     <>
       <section
@@ -80,48 +217,7 @@ const PricingTable = () => {
                 >
                   Get started with the essentials:
                 </p>
-                <div className="mb-7">
-                  <div className="flex gap-4 justify-center">
-                    <div>
-                      {" "}
-                      <BiDumbbell size={24} />
-                    </div>
-                    <div>
-                      {" "}
-                      <p className="text-base  text-body-color leading-loose mb-1">
-                        Access to all our top-notch gym facilities during
-                        regular operating hours.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 justify-center">
-                    <div>
-                      {" "}
-                      <BiRun size={24} />
-                    </div>
-                    <div>
-                      {" "}
-                      <p className="text-base  text-body-color leading-loose mb-1">
-                        Convenience: Enjoy access to locker rooms and showers
-                        for a post-workout refresh.
-                      </p>
-                    </div>
-                  </div>
-                  <div className=" flex gap-4 justify-center">
-                    <div>
-                      {" "}
-                      <GrYoga size={24} />
-                    </div>
-                    <div>
-                      {" "}
-                      <p className="text-base  text-body-color leading-loose mb-1">
-                        Cardio & Strength Training: Utilize our extensive range
-                        of cardio and strength training equipment to build a
-                        strong foundation
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <div className="mb-7">{basic}</div>
                 <a
                   href="javascript:void(0)"
                   className="
@@ -432,12 +528,12 @@ const PricingTable = () => {
                "
               >
                 <span className="text-primary font-semibold text-lg block mb-4">
-                  Business
+                  Standard: Elevate Your Routine
                 </span>
                 <h2 className="font-bold text-dark mb-5 text-[42px]">
-                  $199
+                  $59
                   <span className="text-base text-body-color font-medium">
-                    / year
+                    / month
                   </span>
                 </h2>
                 <p
@@ -448,28 +544,9 @@ const PricingTable = () => {
                   border-b border-[#F2F2F2]
                   "
                 >
-                  Perfect for using in a Business website or a client project.
+                  All Basic benefits, plus:
                 </p>
-                <div className="mb-7">
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    5 Users
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    All UI components
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Lifetime access
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Free updates
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Use on 3 (Three) project
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    4 Months support
-                  </p>
-                </div>
+                <div className="mb-7">{standard}</div>
                 <a
                   href="javascript:void(0)"
                   className="
@@ -487,7 +564,7 @@ const PricingTable = () => {
                   transition
                   "
                 >
-                  Choose Business
+                  Join Now
                 </a>
                 <div>
                   <span className="absolute right-0 top-7 z-[-1]">
@@ -779,12 +856,12 @@ const PricingTable = () => {
                "
               >
                 <span className="text-primary font-semibold text-lg block mb-4">
-                  Professional
+                  Premium: Unmatched Support & Results
                 </span>
                 <h2 className="font-bold text-dark mb-5 text-[42px]">
-                  $256
+                  $99
                   <span className="text-base text-body-color font-medium">
-                    / year
+                    / month
                   </span>
                 </h2>
                 <p
@@ -795,29 +872,9 @@ const PricingTable = () => {
                   border-b border-[#F2F2F2]
                   "
                 >
-                  Perfect for using in a Professional website or a client
-                  project.
+                  All Standard benefits, plus:
                 </p>
-                <div className="mb-7">
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Unlimited Users
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    All UI components
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Lifetime access
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Free updates
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    Use on Unlimited project
-                  </p>
-                  <p className="text-base text-body-color leading-loose mb-1">
-                    12 Months support
-                  </p>
-                </div>
+                <div className="mb-7">{premium}</div>
                 <a
                   href="javascript:void(0)"
                   className="
@@ -835,7 +892,7 @@ const PricingTable = () => {
                   transition
                   "
                 >
-                  Choose Professional
+                  Join Now
                 </a>
                 <div>
                   <span className="absolute right-0 top-7 z-[-1]">
