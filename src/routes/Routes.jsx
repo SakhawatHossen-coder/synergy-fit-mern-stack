@@ -11,6 +11,7 @@ import BeTrainerPage from "../pages/BeTrainerPage";
 import AllTrainersPage from "../pages/AllTrainersPage";
 import DetailsTrainer from "../pages/DetailsTrainer";
 import TrainerBookingPage from "../pages/TrainerBookingPage";
+import ForumPage from "../pages/ForumPage";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "/trainer",
         element: <BeTrainerPage />,
+      },
+      {
+        path: "/forum-post",
+        element: <ForumPage />,
       },
       {
         path: "/trainer-booking-page/:trainer/:time",
