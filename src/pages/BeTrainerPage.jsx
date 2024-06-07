@@ -59,6 +59,11 @@ const BeTrainerPage = () => {
   const onSubmit = async (data) => {
     // console.log(data);
     const { age, availableTime, fullName, image } = data;
+    const selectedOptions = Object.entries(data)
+      .filter(([, isChecked]) => isChecked) // Filter checked options
+      .map(([optionName]) => optionName); // Extract option names
+
+    console.log("Selected options:", selectedOptions);
     const newTrainerInfo = {
       ...data,
       email: user?.email,
@@ -253,7 +258,11 @@ const BeTrainerPage = () => {
                   className="form-checkbox h-5 w-5 text-teal-600"
                   {...register("option1")}
                 />
-                <span className="ml-2 text-gray-700">strength training</span>
+                <input
+                  value="Strength Training"
+                  className="ml-2 text-gray-700"
+                  {...register("option1")}
+                ></input>
               </label>
 
               <label className="inline-flex items-center mt-3">
@@ -262,7 +271,11 @@ const BeTrainerPage = () => {
                   className="form-checkbox h-5 w-5 text-teal-600"
                   {...register("option2")}
                 />
-                <span className="ml-2 text-gray-700">Yoga</span>
+                <input
+                  value="Yoga"
+                  className="ml-2 text-gray-700"
+                  {...register("option2")}
+                ></input>
               </label>
 
               <label className="inline-flex items-center mt-3">
@@ -271,7 +284,11 @@ const BeTrainerPage = () => {
                   className="form-checkbox h-5 w-5 text-teal-600"
                   {...register("option3")}
                 />
-                <span className="ml-2 text-gray-700">HIIT</span>
+                <input
+                  value="HIIT"
+                  {...register("option3")}
+                  className="ml-2 text-gray-700"
+                ></input>
               </label>
             </div>
             <div>

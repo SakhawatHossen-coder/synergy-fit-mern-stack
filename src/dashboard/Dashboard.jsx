@@ -44,14 +44,14 @@ const Dashboard = () => {
                 Applied Trainer
               </NavLink>
               <NavLink
-                to="add"
+                to="add-classes"
                 className={({ isActive }) =>
                   `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
                     isActive ? "bg-teal-900" : "text-black"
                   }`
                 }
               >
-                Be A Trainer
+                Add New Classes
               </NavLink>
             </nav>
           </div>
