@@ -6,15 +6,16 @@ import useAuth from "../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import useAxios from "../hooks/useAxios";
 
 const AddNewClassAdmin = () => {
   const { user, loading, setLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxios();
   const {
     register,
     handleSubmit,
-    watch,
-    control,
+reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -25,13 +26,14 @@ const AddNewClassAdmin = () => {
 
   const { mutateAsync } = useMutation({
     mutationFn: async (classData) => {
-      let { data } = await axiosSecure.post(`/classes`, classData);
+      let { data } = await axiosCommon.post(`/classes`, classData);
       return data;
     },
     onSuccess: () => {
       console.log("Class data saved successfully");
       toast.success("Class data saved successfully");
       // navigate("/")
+      reset()
     },
   });
 
@@ -114,24 +116,7 @@ const AddNewClassAdmin = () => {
                 />
               </div>
             </div>
-            <div>
-              <label
-                htmlFor="Expertise"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Expertise
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="text"
-                  name="last-name"
-                  id="last-name"
-                  autoComplete="family-name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("expertise", { required: true })}
-                />
-              </div>
-            </div>
+           
 
             <div>
               <label
@@ -156,7 +141,7 @@ const AddNewClassAdmin = () => {
               type="submit"
               className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {loading ? <Spinner className="animate-spin m-auto" /> : "Apply"}
+              {loading ? <Spinner className="animate-spin m-auto" /> : "Submit"}
             </button>
           </div>
         </form>
