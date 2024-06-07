@@ -22,7 +22,7 @@ const Nav = () => {
           </Button>
         </li>
       </NavLink>
-      <NavLink to="/bookings">
+      <NavLink to="/all-class">
         <li>
           {" "}
           <Button color="cyan" className="btn pop">

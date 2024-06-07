@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Spinner } from "@material-tailwind/react";
 
 import { useForm } from "react-hook-form";
@@ -7,21 +7,37 @@ import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
+import Select from "react-select";
 
 const AddNewClassAdmin = () => {
+  const [tags, setTags] = useState([]);
+
   const { user, loading, setLoading } = useAuth();
-  const axiosSecure = useAxiosSecure();
   const axiosCommon = useAxios();
   const {
     register,
     handleSubmit,
-reset,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
       selectedOption: "", // Or an initial value from your options array
     },
   });
+  const options = [
+    { value: "Yoga", label: "Yoga" },
+    { value: "HIIT", label: "HIIT" },
+    { value: "Strength Training", label: "Strength Training" },
+  ];
+  const handleTags = (selectedOption) => {
+    let newTags = [];
+    selectedOption.map((val) => {
+      // console.log(val.value);
+      let newVal = val.value;
+      newTags.push(newVal);
+    });
+    setTags(newTags);
+  };
   //data send to db
 
   const { mutateAsync } = useMutation({
@@ -33,13 +49,13 @@ reset,
       console.log("Class data saved successfully");
       toast.success("Class data saved successfully");
       // navigate("/")
-      reset()
+      reset();
     },
   });
 
   const onSubmit = async (data) => {
     console.log(data);
-    const newClassInfo = { ...data };
+    const newClassInfo = { ...data, Tags: tags };
     try {
       //post to server
       await mutateAsync(newClassInfo);
@@ -116,7 +132,23 @@ reset,
                 />
               </div>
             </div>
-           
+            <div>
+              <label
+                htmlFor="Tags"
+                className="block text-sm font-semibold leading-6 text-gray-900"
+              >
+                Tags
+              </label>
+              <Select
+                // defaultValue={[options[2], options[3]]}
+                isMulti
+                onChange={handleTags}
+                options={options}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                required
+              ></Select>
+            </div>
 
             <div>
               <label

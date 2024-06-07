@@ -305,6 +305,7 @@ const BeTrainerPage = () => {
                 options={options}
                 className="basic-multi-select"
                 classNamePrefix="select"
+                required
               ></Select>
             </div>
 
@@ -330,6 +331,7 @@ const BeTrainerPage = () => {
                   options={slotOptions}
                   className="basic-multi-select"
                   classNamePrefix="select"
+                  required
                 ></Select>
               </div>
             </div>
