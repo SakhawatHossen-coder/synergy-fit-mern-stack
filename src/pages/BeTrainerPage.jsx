@@ -64,8 +64,8 @@ const BeTrainerPage = () => {
       email: user?.email,
       weekDays: weekVal,
       slot: slotVal,
-      status: "pending",
-      userRole:"Member"
+      status: "Pending",
+      userRole: "Member",
     };
     console.log(newTrainerInfo);
 

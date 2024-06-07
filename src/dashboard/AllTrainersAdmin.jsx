@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import useAxios from "../hooks/useAxios";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Spinner } from "@material-tailwind/react";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
+import Alert from "../components/Alert";
 
 const AllTrainersAdmin = () => {
+  const axiosSecure = useAxiosSecure();
+  const [isOpen, setIsOpen] = useState(false);
+
   let options = [
     { value: "user", label: "user" },
     { value: "admin", label: "admin" },
@@ -12,8 +19,14 @@ const AllTrainersAdmin = () => {
   const handleChange = (selectedOption) => {
     console.log("handleChange", selectedOption);
   };
+
+  const handleDelete = () => {};
   const axiosCommon = useAxios();
-  const { data: trainers = [], isLoading } = useQuery({
+  const {
+    data: trainers = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/trainer`);
@@ -24,7 +37,6 @@ const AllTrainersAdmin = () => {
   console.log(trainers);
   return (
     <div>
-    
       <div>
         <div className="text-gray-900 rounded-lg shadow-lg">
           <div className="p-4 flex">
@@ -39,48 +51,74 @@ const AllTrainersAdmin = () => {
                   <th className="text-left p-3 px-5">Role</th>
                   <th></th>
                 </tr>
-                {trainers?.map((trainer, idx) => (
-                  <tr key={idx} className="border-b  bg-gray-100">
-                    <td className="p-3 px-5">
-                      <input
-                        type="text"
-                        value={trainer?.fullName}
-                        className="bg-transparent border-0 outline-none"
-                        disabled
-                      />
-                    </td>
-                    <td className="p-3 px-5">
-                      <input
-                        type="text"
-                        value={trainer?.email}
-                        className="bg-transparent border-0 outline-none focus:outline-none"
-                        disabled
-                      />
-                    </td>
-                    <td className="p-3 px-4 mx-5">
-                      <Select
+                {trainers &&
+                  trainers?.map((trainer, idx) => {
+                    if (trainer?.status !== "Member") {
+                      return <p>No Trainer..Yet</p>;
+                    }
+                    // const { mutateAsync } = useMutation({
+                    //   mutationFn: async (role) => {
+                    //     const { data } = await axiosSecure.patch(
+                    //       `/trainer/update/${trainer?.email}`,
+                    //       role
+                    //     );
+                    //     return data;
+                    //   },
+                    //   onSuccess: (data) => {
+                    //     refetch();
+                    //     console.log(data);
+                    //     toast.success("User role updated successfully!");
+                    //     setIsOpen(false);
+                    //   },
+                    // });
+                    return (
+                      <tr key={idx} className="border-b  bg-gray-100">
+                        <td className="p-3 px-5">
+                          <input
+                            type="text"
+                            value={trainer?.fullName}
+                            className="bg-transparent border-0 outline-none"
+                            disabled
+                          />
+                        </td>
+                        <td className="p-3 px-5">
+                          <input
+                            type="text"
+                            value={trainer?.email}
+                            className="bg-transparent border-0 outline-none focus:outline-none"
+                            disabled
+                          />
+                        </td>
+                        <td className="p-3 px-4 mx-5">
+                          {/* <Select
                         onChange={handleChange}
                         options={options}
                         className="basic-multi-select"
                         classNamePrefix="select"
-                      ></Select>
-                    </td>
-                    <td className="p-3 px-5 flex justify-end">
-                      <button
+                      ></Select> */}
+                          {trainer.userRole}
+                        </td>
+                        <td className="p-3 px-5 flex justify-end">
+                          {/* <button
                         type="button"
                         className="mr-3 text-sm  bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded"
                       >
                         Save
-                      </button>
-                      <button
-                        type="button"
-                        className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                      </button> */}
+                          {/* <button
+                            type="button"
+                            className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                            onClick={() => {
+                            
+                            }}
+                          >
+                            Delete
+                          </button> */}
+                          <Alert trainer={trainer} />
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>

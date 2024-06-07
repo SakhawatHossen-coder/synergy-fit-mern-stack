@@ -4,20 +4,19 @@ import useAxios from "../hooks/useAxios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { GrAction } from "react-icons/gr";
 import { CiEdit } from "react-icons/ci";
-import Modals from "../components/Modal";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const AppliedTrainersAdmin = () => {
+  const { user } = useAuth();
+  const axiosCommon = useAxios();
+  const [isOpen, setIsOpen] = useState(false);
+  const axiosSecure = useAxiosSecure();
   const TABLE_HEAD = ["Name", "Email", "Role", "Action"];
   // for modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  const [isOpen, setIsOpen] = useState(false);
 
-  const axiosCommon = useAxios();
   const {
     data: trainers = [],
     isLoading,
@@ -32,7 +31,7 @@ const AppliedTrainersAdmin = () => {
   // const delHand = () => {};
 
   if (isLoading) return <Spinner className="mx-auto" />;
-  console.log(trainers);
+  // console.log(trainers);
   return (
     <div>
       AppliedTrainersAdmin
@@ -58,8 +57,26 @@ const AppliedTrainersAdmin = () => {
           </thead>
           <tbody>
             {trainers?.map(
-              ({ fullName, email, userRole, weekDays, age }, index) => {
+              ({ fullName, email, userRole, weekDays, age, status }, index) => {
+                if (status !== "Pending") {
+                  return <p>No Applied Trainer..Yet</p>;
+                }
                 let join = "Age" + ":" + age + " " + "Email" + ":" + email;
+                const { mutateAsync } = useMutation({
+                  mutationFn: async (role) => {
+                    const { data } = await axiosSecure.patch(
+                      `/trainer/update/${email}`,
+                      role
+                    );
+                    return data;
+                  },
+                  onSuccess: (data) => {
+                    // refetch();
+                    console.log(data);
+                    toast.success("User role updated successfully!");
+                    setIsOpen(false);
+                  },
+                });
                 return (
                   <>
                     <tr key={index} className="even:bg-blue-gray-50/50">
@@ -105,11 +122,25 @@ const AppliedTrainersAdmin = () => {
                               confirmButtonColor: "#3085d6",
                               cancelButtonColor: "#d33",
                               confirmButtonText: "Confirm",
-                            }).then((result) => {
+                            }).then(async (result) => {
                               if (result.isConfirmed) {
+                                if (user?.email === email) {
+                                  toast.error("Action Not Allowed");
+                                  return setIsOpen(false);
+                                }
+                                const Role = {
+                                  userRole: "Trainer",
+                                  status: "Verified",
+                                };
+                                try {
+                                  await mutateAsync(Role);
+                                } catch (err) {
+                                  console.log(err);
+                                  toast.error(err.message);
+                                }
                                 Swal.fire({
-                                  title: "Deleted!",
-                                  text: "Your file has been deleted.",
+                                  title: "Success!",
+                                  text: `${fullName}has become Trainer.`,
                                   icon: "success",
                                 });
                               }
@@ -120,21 +151,6 @@ const AppliedTrainersAdmin = () => {
                         </Button>
                       </td>
                     </tr>
-                    <Modals
-                      fullName={fullName}
-                      email={email}
-                      userRole={userRole}
-                      weekDays={weekDays}
-                      refetch={refetch}
-                      age={age}
-                      key={index + 1}
-                      isModalOpen={isModalOpen}
-                      closeModal={closeModal}
-                      setIsOpen={setIsOpen}
-                      isOpen={isOpen}
-                      // modalHandler={modalHandler}
-                    />
-                    ;
                   </>
                 );
               }
