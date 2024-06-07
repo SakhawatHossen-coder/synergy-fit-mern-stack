@@ -16,6 +16,7 @@ import AllTrainersAdmin from "../dashboard/AllTrainersAdmin";
 import AppliedTrainersAdmin from "../dashboard/AppliedTrainersAdmin";
 import AddNewClassAdmin from "../dashboard/AddNewClassAdmin";
 import AllClassPage from "../pages/AllClassPage";
+import UserProfile from "../dashboard/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "add-classes",
         element: <AddNewClassAdmin />,
+      },
+      {
+        path: "user-profile",
+        element: <UserProfile />,
       },
     ],
   },

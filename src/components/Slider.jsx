@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Glide from "@glidejs/glide";
+import { Typography } from "@material-tailwind/react";
 
 const Slider = () => {
   useEffect(() => {
@@ -7,7 +8,6 @@ const Slider = () => {
       type: "carousel",
       focusAt: 1,
       animationDuration: 4000,
-      autoplay: 4500,
       autoplay: true,
       rewind: true,
       perView: 2,
@@ -35,7 +35,8 @@ const Slider = () => {
   return (
     <>
       {/*<!-- Component: Testimonial carousel --> */}
-      <div className="glide-08 relative w-full">
+      <Typography color="teal">Testimonials</Typography>
+      <div className="glide-08 relative w-full my-5">
         {/*    <!-- Slides --> */}
         <div data-glide-el="track">
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 pb-12">
