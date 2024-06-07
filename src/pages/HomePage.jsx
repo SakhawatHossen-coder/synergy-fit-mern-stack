@@ -4,6 +4,7 @@ import Feature from "../components/Feature";
 import About from "../components/About";
 import TeamSection from "../components/Team-section/TeamSection";
 import Newsletter from "../components/Newsletter";
+import Slider from "../components/Slider";
 
 const HomePage = () => {
   return (
@@ -11,7 +12,8 @@ const HomePage = () => {
       <Banner />
       <Feature />
       <About />
-      <Newsletter/>
+      <Slider />
+      <Newsletter />
       {/* team section */}
       <TeamSection />
     </div>
