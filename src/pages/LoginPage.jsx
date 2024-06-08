@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button } from "@material-tailwind/react";
 import useAxios from "../hooks/useAxios";
+import log from "../assets/login.svg";
 const LoginPage = () => {
   const { login, googleLogin, setLoading, user, updateUserProfile } = useAuth();
   const navigate = useNavigate();
@@ -59,23 +60,8 @@ const LoginPage = () => {
   return (
     <>
       <div className="h-screen flex">
-        <div className="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center">
-          <div>
-            <h1 className="text-white font-bold text-4xl font-sans">
-              GoFinance
-            </h1>
-            <p className="text-white mt-1">
-              The most popular peer to peer lending at SEA
-            </p>
-            <button
-              type="submit"
-              className="block w-28 bg-white text-indigo-800 mt-4 py-2 rounded-2xl font-bold mb-2"
-            >
-              Read More
-            </button>
-          </div>
-        </div>
-
+        <img src={log} alt="" />
+      
         <div className="flex w-1/2 justify-center items-center bg-white">
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">

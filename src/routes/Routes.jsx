@@ -18,6 +18,7 @@ import AddNewClassAdmin from "../dashboard/AddNewClassAdmin";
 import AllClassPage from "../pages/AllClassPage";
 import UserProfile from "../dashboard/UserProfile";
 import AddForumPage from "../dashboard/AddForumPage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/become-trainer",
-        element: <BeTrainerPage />,
+        element: (
+          <PrivateRoute>
+            <BeTrainerPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/all-forum-post",
@@ -55,11 +60,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/trainer-booking-page/:trainer/:time",
-        element: <TrainerBookingPage />,
+        element: (
+          <PrivateRoute>
+            <TrainerBookingPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: `/trainer-details/:id`,
-        element: <DetailsTrainer />,
+        element: (
+          <PrivateRoute>
+            <DetailsTrainer />
+          </PrivateRoute>
+        ),
       },
     ],
   },
