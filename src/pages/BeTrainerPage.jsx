@@ -36,6 +36,7 @@ const BeTrainerPage = () => {
     handleSubmit,
     watch,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -52,7 +53,8 @@ const BeTrainerPage = () => {
     onSuccess: () => {
       console.log("data saved successfully");
       toast.success("Your Application for Trainer Successful!");
-      // navigate("/")
+      reset();
+      navigate("/");
     },
   });
 
@@ -104,14 +106,11 @@ const BeTrainerPage = () => {
   };
   return (
     <>
-      <div className="isolate bg-white px-6 py-4 sm:py-32 lg:px-8">
+      <div className="isolate bg-white px-6 py-4 sm:py-20 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Add Your Desire Room
+            Become a Professional Trainer With Us
           </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            Aute magna irure deserunt veniam aliqua magna enim voluptate.
-          </p>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -245,10 +244,10 @@ const BeTrainerPage = () => {
               </div>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-0">
               <label
                 htmlFor="skills"
-                className="block text-sm font-semibold leading-6 text-gray-900"
+                className="block text-sm font-semibold  text-gray-900"
               >
                 Skills
               </label>
@@ -261,6 +260,7 @@ const BeTrainerPage = () => {
                 <input
                   value="Strength Training"
                   className="ml-2 text-gray-700"
+                  disabled
                   {...register("option1")}
                 ></input>
               </label>
@@ -273,7 +273,8 @@ const BeTrainerPage = () => {
                 />
                 <input
                   value="Yoga"
-                  className="ml-2 text-gray-700"
+                  className="ml-2 w-[4rem] text-gray-700"
+                  disabled
                   {...register("option2")}
                 ></input>
               </label>
@@ -287,6 +288,7 @@ const BeTrainerPage = () => {
                 <input
                   value="HIIT"
                   {...register("option3")}
+                  disabled
                   className="ml-2 text-gray-700"
                 ></input>
               </label>

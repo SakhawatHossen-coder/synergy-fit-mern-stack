@@ -36,7 +36,7 @@ const Slider = () => {
     <>
       {/*<!-- Component: Testimonial carousel --> */}
       <Typography color="teal">Testimonials</Typography>
-      <div className="glide-08 relative w-full my-5">
+      <div className="glide-08 relative w-full my-5 overflow-x-auto">
         {/*    <!-- Slides --> */}
         <div data-glide-el="track">
           <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 pb-12">

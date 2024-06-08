@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <>
-      <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden -z-10">
+      <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden ">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fGd5bXxlbnwwfHwwfHx8MA%3D%3D"
@@ -24,8 +24,8 @@ const Banner = () => {
             active, fulfilling lives.
           </p>
           <Link
-            to="/classes"
-            className="bg-teal-400 text-gray-900 hover:bg-teal-800 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer"
+            to="/all-class"
+            className="bg-teal-400 text-gray-900 hover:bg-teal-800 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg cursor-pointer "
           >
             Classes Page
           </Link>
