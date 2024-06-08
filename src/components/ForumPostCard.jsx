@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -11,8 +11,24 @@ import { FaUpDown } from "react-icons/fa6";
 import { BiDownArrow, BiDownvote, BiUpArrow, BiUpvote } from "react-icons/bi";
 
 const ForumPostCard = ({ post }) => {
-  console.log(post);
+  // console.log(post);
   const { writerName, image, title, details, userRole, Tags } = post;
+  const [vote, setVote] = useState(0);
+  const [voteDown, setVoteDown] = useState(0);
+  const [val, setVal] = useState("outlined");
+  const [value, setValue] = useState("outlined");
+  const [dis, setDis] = useState("");
+  const [disable, setDisable] = useState("");
+  const handleVote = () => {
+    setVote(vote + 1);
+    setVal("filled");
+    setDis("disabled");
+  };
+  const handleDownVote = () => {
+    setVoteDown(vote - 1);
+    setValue("filled");
+    setDis("disabled");
+  };
   return (
     <Card className="w-full max-w-[48rem] flex-col">
       <CardHeader
@@ -62,16 +78,16 @@ const ForumPostCard = ({ post }) => {
         </Typography>
         <div className="space-x-4 flex">
           <div className="flex gap-2 items-center">
-            <Button variant="outlined">
+            <Button disabled={dis} variant={val} onClick={handleVote}>
               <BiUpvote />
             </Button>
-            1
+            {vote}
           </div>
           <div className="flex gap-2 items-center">
-            <Button variant="outlined">
+            <Button disabled={dis} variant={value} onClick={handleDownVote}>
               <BiDownvote />
             </Button>
-            2
+            {voteDown}
           </div>
         </div>
       </CardFooter>
