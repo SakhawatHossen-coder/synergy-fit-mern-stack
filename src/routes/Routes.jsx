@@ -17,6 +17,7 @@ import AppliedTrainersAdmin from "../dashboard/AppliedTrainersAdmin";
 import AddNewClassAdmin from "../dashboard/AddNewClassAdmin";
 import AllClassPage from "../pages/AllClassPage";
 import UserProfile from "../dashboard/UserProfile";
+import AddForumPage from "../dashboard/AddForumPage";
 
 export const router = createBrowserRouter([
   {
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
         element: <BeTrainerPage />,
       },
       {
-        path: "/forum-post",
+        path: "/forum-post-page",
         element: <ForumPage />,
       },
       {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: "user-profile",
         element: <UserProfile />,
+      },
+      {
+        path: "add-forum",
+        element: <AddForumPage />,
       },
     ],
   },
