@@ -30,7 +30,7 @@ const Nav = () => {
           </Button>
         </li>
       </NavLink>
-      <NavLink to="/forum-post">
+      <NavLink to="/all-forum-post">
         <li>
           {" "}
           <Button color="cyan" className="btn pop">

@@ -1,8 +1,20 @@
-import { Typography } from "@material-tailwind/react";
+import { Spinner, Typography } from "@material-tailwind/react";
 import React from "react";
 import ForumPostCard from "../components/ForumPostCard";
+import useAxios from "../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const ForumPage = () => {
+  const axiosCommon = useAxios();
+  const { data: posts = [], isLoading } = useQuery({
+    queryKey: ["class"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get("/post");
+      return data;
+    },
+  });
+  console.log(posts);
+  if (isLoading) return <Spinner />;
   return (
     <>
       <div className="my-4">
@@ -13,8 +25,10 @@ const ForumPage = () => {
           Find tips, advice, and support from fellow fitness enthusiasts!
         </Typography>
       </div>
-      <div>
-        <ForumPostCard />
+      <div className="flex justify-center items-center flex-col space-y-4">
+        {posts?.map((post, idx) => (
+          <ForumPostCard key={idx} post={post} />
+        ))}
       </div>
     </>
   );

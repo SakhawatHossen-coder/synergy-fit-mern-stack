@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
         element: <BeTrainerPage />,
       },
       {
-        path: "/forum-post-page",
+        path: "/all-forum-post",
         element: <ForumPage />,
       },
       {
