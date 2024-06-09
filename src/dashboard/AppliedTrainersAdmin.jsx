@@ -8,6 +8,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import AppTrainerTable from "../components/AppTrainerTable";
 
 const AppliedTrainersAdmin = () => {
   const { user } = useAuth();
@@ -28,8 +29,10 @@ const AppliedTrainersAdmin = () => {
       return data;
     },
   });
-  // const delHand = () => {};
-
+  const delHand = () => {};
+  const AppTrainer = trainers.filter(function (train) {
+    return train.userRole === "Member";
+  });
   if (isLoading) return <Spinner className="mx-auto" />;
   // console.log(trainers);
   return (
@@ -56,104 +59,19 @@ const AppliedTrainersAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {trainers?.map(
-              ({ fullName, email, userRole, weekDays, age, status }, index) => {
-                if (status !== "Pending") {
-                  return <p>No Applied Trainer..Yet</p>;
-                }
-                let join = "Age" + ":" + age + " " + "Email" + ":" + email;
-                const { mutateAsync } = useMutation({
-                  mutationFn: async (role) => {
-                    const { data } = await axiosSecure.patch(
-                      `/trainer/update/${email}`,
-                      role
-                    );
-                    return data;
-                  },
-                  onSuccess: (data) => {
-                    // refetch();
-                    console.log(data);
-                    toast.success("User role updated successfully!");
-                    setIsOpen(false);
-                  },
-                });
+            {AppTrainer.length>0 ? (
+              AppTrainer?.map((train, index) => {
                 return (
-                  <>
-                    <tr key={index} className="even:bg-blue-gray-50/50">
-                      <td className="p-4">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {fullName}
-                        </Typography>
-                      </td>
-                      <td className="p-4">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {email}
-                        </Typography>
-                      </td>
-                      <td className="p-4">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {userRole}
-                        </Typography>
-                      </td>
-                      <td className="p-4">
-                        <Button
-                          variant="filled"
-                          color="teal"
-                          className=""
-                          // onClick={() => setIsModalOpen(true)}
-                          onClick={() => {
-                            Swal.fire({
-                              title: `Are you sure? Make ${fullName} a Trainer`,
-                              text: join,
-                              icon: "warning",
-                              showCancelButton: true,
-                              confirmButtonColor: "#3085d6",
-                              cancelButtonColor: "#d33",
-                              confirmButtonText: "Confirm",
-                            }).then(async (result) => {
-                              if (result.isConfirmed) {
-                                if (user?.email === email) {
-                                  toast.error("Action Not Allowed");
-                                  return setIsOpen(false);
-                                }
-                                const Role = {
-                                  userRole: "Trainer",
-                                  status: "Verified",
-                                };
-                                try {
-                                  await mutateAsync(Role);
-                                } catch (err) {
-                                  console.log(err);
-                                  toast.error(err.message);
-                                }
-                                Swal.fire({
-                                  title: "Success!",
-                                  text: `${fullName}has become Trainer.`,
-                                  icon: "success",
-                                });
-                              }
-                            });
-                          }}
-                        >
-                          <CiEdit size={18} />
-                        </Button>
-                      </td>
-                    </tr>
-                  </>
+                  <AppTrainerTable
+                    refetch={refetch}
+                    setIsOpen={setIsOpen}
+                    train={train}
+                    key={index}
+                  />
                 );
-              }
+              })
+            ) : (
+              <p>No Applied Trainer Yet...</p>
             )}
           </tbody>
         </table>

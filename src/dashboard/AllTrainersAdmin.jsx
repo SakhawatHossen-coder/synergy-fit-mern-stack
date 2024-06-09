@@ -33,6 +33,9 @@ const AllTrainersAdmin = () => {
       return data;
     },
   });
+  const Trainer = trainers.filter(function (train) {
+    return train.userRole === "Trainer";
+  });
   if (isLoading) return <Spinner className="mx-auto" />;
   console.log(trainers);
   return (
@@ -40,7 +43,7 @@ const AllTrainersAdmin = () => {
       <div>
         <div className="text-gray-900 rounded-lg shadow-lg">
           <div className="p-4 flex">
-            <h1 className="text-3xl">Trainers {trainers.length}</h1>
+            <h1 className="text-3xl">Trainers {Trainer.length}</h1>
           </div>
           <div className="px-3 py-4 flex justify-center">
             <table className="w-full text-md bg-white shadow-md rounded mb-4">
@@ -51,29 +54,15 @@ const AllTrainersAdmin = () => {
                   <th className="text-left p-3 px-5">Role</th>
                   <th></th>
                 </tr>
-                {trainers &&
-                  trainers?.map((trainer, idx) => {
-                    if (trainer?.status !== "Member") {
+                {Trainer &&
+                  Trainer?.map((trainer, idx) => {
+                    if (trainer?.userRole !== "Trainer") {
                       return <p>No Trainer..Yet</p>;
                     }
-                    // const { mutateAsync } = useMutation({
-                    //   mutationFn: async (role) => {
-                    //     const { data } = await axiosSecure.patch(
-                    //       `/trainer/update/${trainer?.email}`,
-                    //       role
-                    //     );
-                    //     return data;
-                    //   },
-                    //   onSuccess: (data) => {
-                    //     refetch();
-                    //     console.log(data);
-                    //     toast.success("User role updated successfully!");
-                    //     setIsOpen(false);
-                    //   },
-                    // });
+
                     return (
                       <tr key={idx} className="border-b  bg-gray-100">
-                        <td className="p-3 px-5">
+                        <td className="p-3">
                           <input
                             type="text"
                             value={trainer?.fullName}

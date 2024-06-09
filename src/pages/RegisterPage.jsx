@@ -22,6 +22,7 @@ const RegisterPage = () => {
     const userInfo = {
       name,
       email,
+      isAdmin: "No",
     };
     try {
       await createUser(email, password);
@@ -37,7 +38,7 @@ const RegisterPage = () => {
       toast.error("Login Failed!");
     }
   };
-  
+
   return (
     <>
       <div className="min-w-screen min-h-screen  flex items-center justify-center px-5 py-5">

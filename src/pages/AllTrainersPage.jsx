@@ -1,15 +1,16 @@
 import React from "react";
 import TrainerProfile from "../components/TrainerProfile";
-import useAxios from "../hooks/useAxios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@material-tailwind/react";
 
 const AllTrainersPage = () => {
-  const axiosCommon = useAxios();
+  // const axiosCommon = useAxios();
+  const axiosSecure = useAxiosSecure();
   const { data: trainers = [], isLoading } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/trainer`);
+      const { data } = await axiosSecure.get(`/trainer`);
       return data;
     },
   });

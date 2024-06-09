@@ -81,7 +81,7 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        index: true,
+        path: "all-news-letter",
         element: <DashStat />,
       },
       {

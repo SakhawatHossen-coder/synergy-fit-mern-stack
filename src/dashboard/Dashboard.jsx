@@ -1,13 +1,71 @@
 import React, { useState } from "react";
 import { FaPen, FaUser } from "react-icons/fa";
+import { PiNewspaperLight } from "react-icons/pi";
 import { TbGymnastics } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = ({ isAdmin }) => {
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
     setActive(!isActive);
   };
+  const ADMIN = (
+    <>
+      <NavLink
+        to="all-news-letter"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <PiNewspaperLight />
+        All Newsletter Subscriber
+      </NavLink>
+      <NavLink
+        to="all-trainers-admin"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <TbGymnastics />
+        All Trainers
+      </NavLink>
+      <NavLink
+        to="applied-trainers-admin"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        Applied Trainer
+      </NavLink>
+      <NavLink
+        to="add-classes"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        Add New Classes
+      </NavLink>
+      <NavLink
+        to="add-forum"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <FaPen />
+        Add Forum
+      </NavLink>
+    </>
+  );
   return (
     <>
       {/* className=
@@ -23,37 +81,7 @@ const Dashboard = () => {
           </div>
           <div className="flex flex-col flex-1 overflow-y-auto">
             <nav className="flex-1 px-2 space-y-4 py-4 bg-blue-900">
-              <NavLink
-                to="all-trainers-admin"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
-                    isActive ? "bg-teal-900" : "text-black"
-                  }`
-                }
-              >
-                <TbGymnastics />
-                All Trainers
-              </NavLink>
-              <NavLink
-                to="applied-trainers-admin"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
-                    isActive ? "bg-teal-900" : "text-black"
-                  }`
-                }
-              >
-                Applied Trainer
-              </NavLink>
-              <NavLink
-                to="add-classes"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
-                    isActive ? "bg-teal-900" : "text-black"
-                  }`
-                }
-              >
-                Add New Classes
-              </NavLink>
+              {isAdmin && ADMIN}
               <NavLink
                 to="user-profile"
                 className={({ isActive }) =>
@@ -64,17 +92,6 @@ const Dashboard = () => {
               >
                 <FaUser />
                 User Profile
-              </NavLink>
-              <NavLink
-                to="add-forum"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
-                    isActive ? "bg-teal-900" : "text-black"
-                  }`
-                }
-              >
-                <FaPen />
-                Add Forum
               </NavLink>
             </nav>
           </div>
