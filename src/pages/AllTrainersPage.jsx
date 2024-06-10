@@ -14,13 +14,16 @@ const AllTrainersPage = () => {
       return data;
     },
   });
+  const AllTrainer = trainers.filter(function (train) {
+    return train.userRole === "Trainer";
+  });
   if (isLoading) return <Spinner className="mx-auto" />;
   return (
     <>
-      <div>AllTrainersPage</div>
-      <p>{trainers.length}length</p>
+    
+      <p>Total: {AllTrainer.length} Trainers</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {trainers?.map((trainer, idx) => (
+        {AllTrainer?.map((trainer, idx) => (
           <TrainerProfile key={idx} trainer={trainer} />
         ))}
       </div>

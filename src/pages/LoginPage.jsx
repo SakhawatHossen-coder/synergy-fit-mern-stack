@@ -61,7 +61,7 @@ const LoginPage = () => {
     <>
       <div className="h-screen flex">
         <img src={log} alt="" />
-      
+
         <div className="flex w-1/2 justify-center items-center bg-white">
           <form onSubmit={handleSubmit(onSubmit)} className="bg-white">
             <h1 className="text-gray-800 font-bold text-2xl mb-1">
@@ -109,9 +109,8 @@ const LoginPage = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none"
-                type="text"
-                name=""
-                id=""
+                type="password"
+               
                 placeholder="Password"
                 {...register("password", { required: true })}
               />

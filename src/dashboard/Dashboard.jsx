@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { BiPlusCircle } from "react-icons/bi";
 import { FaPen, FaUser } from "react-icons/fa";
-import { PiNewspaperLight } from "react-icons/pi";
+import { PiNewspaperLight, PiPenNib } from "react-icons/pi";
 import { TbGymnastics } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 
-const Dashboard = ({ isAdmin }) => {
+const Dashboard = ({ isAdmin, isTrainer }) => {
   const [isActive, setActive] = useState(false);
+  // console.log(isAdmin, isTrainer);
   const handleToggle = () => {
     setActive(!isActive);
   };
@@ -66,6 +68,32 @@ const Dashboard = ({ isAdmin }) => {
       </NavLink>
     </>
   );
+  const TRAINER = (
+    <>
+      <NavLink
+        to="add-slot"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <BiPlusCircle />
+        Add Slot
+      </NavLink>
+      <NavLink
+        to="manage-slot"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <PiPenNib />
+        Manage Slot
+      </NavLink>
+    </>
+  );
   return (
     <>
       {/* className=
@@ -81,7 +109,8 @@ const Dashboard = ({ isAdmin }) => {
           </div>
           <div className="flex flex-col flex-1 overflow-y-auto">
             <nav className="flex-1 px-2 space-y-4 py-4 bg-blue-900">
-              {isAdmin && ADMIN}
+              {isAdmin ? ADMIN : ""}
+              {isTrainer && TRAINER}
               <NavLink
                 to="user-profile"
                 className={({ isActive }) =>

@@ -19,6 +19,10 @@ import AllClassPage from "../pages/AllClassPage";
 import UserProfile from "../dashboard/UserProfile";
 import AddForumPage from "../dashboard/AddForumPage";
 import PrivateRoute from "./PrivateRoute";
+import AddSlotTrainer from "../dashboard/AddSlotTrainer";
+import ManageSlotTrainer from "../dashboard/ManageSlotTrainer";
+import Payment from "../pages/Payment";
+import TrainerBook from "../pages/TrainerBook";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +78,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: `/trainer-booking/:id`,
+        element: (
+          <PrivateRoute>
+            <TrainerBook />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -103,6 +115,14 @@ export const router = createBrowserRouter([
       {
         path: "add-forum",
         element: <AddForumPage />,
+      },
+      {
+        path: "add-slot",
+        element: <AddSlotTrainer />,
+      },
+      {
+        path: "manage-slot",
+        element: <ManageSlotTrainer />,
       },
     ],
   },

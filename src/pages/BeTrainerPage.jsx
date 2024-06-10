@@ -70,7 +70,7 @@ const BeTrainerPage = () => {
       ...data,
       email: user?.email,
       weekDays: weekVal,
-      slot: slotVal,
+      // slot: slotVal,
       status: "Pending",
       userRole: "Member",
     };
@@ -319,41 +319,23 @@ const BeTrainerPage = () => {
                 Available time in a day
               </label>
               <div className="mt-2.5">
-                {/* <input
-                  type="text"
-                  id="last-name"
-                  autoComplete="family-name"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("availableTime", { required: true })}
-                /> */}
-                <Select
-                  // defaultValue={[options[2], options[3]]}
+                <input
+                  type="number"
+                  name="time"
+                  id=""
+                  {...register("timeSlot", { required: true })}
+                />
+                {/* <Select
+                  
                   isMulti
                   onChange={handleChangeDay}
                   options={slotOptions}
                   className="basic-multi-select"
                   classNamePrefix="select"
                   required
-                ></Select>
+                ></Select> */}
               </div>
             </div>
-            {/* <div className="sm:col-span-2">
-              <label
-                htmlFor="Short Description"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Short Description
-              </label>
-              <div className="mt-2.5">
-                <textarea
-                  name="Short Description"
-                  id="message"
-                  rows="4"
-                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  {...register("Short Description", { required: true })}
-                ></textarea>
-              </div>
-            </div> */}
           </div>
           <div className="mt-10">
             <button

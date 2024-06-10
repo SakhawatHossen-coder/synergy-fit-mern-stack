@@ -6,6 +6,7 @@ import { Button, Spinner, Typography } from "@material-tailwind/react";
 import TrainerInfoCard from "../components/TrainerInfoCard";
 import TrainerSlotCard from "../components/TrainerSlotCard";
 import { FaDumbbell } from "react-icons/fa6";
+import SlotCard from "../components/SlotCard";
 
 const DetailsTrainer = () => {
   const { id } = useParams();
@@ -39,7 +40,13 @@ const DetailsTrainer = () => {
         <Typography variant="h3" className="font-bold">
           Trainer Schedule
         </Typography>
-        <TrainerSlotCard trainer={trainer} />
+        {/* <TrainerSlotCard trainer={trainer} /> */}
+        <Typography variant="h5" color="blue-gray" className="mb-2 capitalize">
+          available time slots for booking sessions
+        </Typography>
+        {trainer.weekDays?.map((a, idx) => (
+          <SlotCard trainer={trainer} a={a} key={idx}/>
+        ))}
       </div>
     </div>
   );

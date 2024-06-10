@@ -11,8 +11,8 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 const TrainerProfile = ({ trainer }) => {
-  const { fullName, experience, slot, image, _id } = trainer;
-//   console.log(trainer);
+  const { fullName, experience, slot, image, _id, timeSlot } = trainer;
+  console.log(timeSlot);
   return (
     <div>
       <Card className="w-96">
@@ -29,13 +29,14 @@ const TrainerProfile = ({ trainer }) => {
           <Typography variant="h4" color="blue-gray" className="font-medium">
             Available Slots:
           </Typography>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-2">
+          <div>{timeSlot}</div>
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-2">
             {slot?.map((day, idx) => (
               <Button key={idx} size="sm">
                 {day}
               </Button>
             ))}
-          </div>
+          </div> */}
         </CardBody>
         <CardFooter className="flex justify-center gap-7 pt-2">
           <Tooltip content="Like">
