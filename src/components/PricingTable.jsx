@@ -5,8 +5,10 @@ import { GrYoga } from "react-icons/gr";
 import { MdSpatialTracking } from "react-icons/md";
 import { PiNewspaperClipping } from "react-icons/pi";
 import { TbSocial, TbYoga } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
-const PricingTable = () => {
+const PricingTable = ({ trainer ,day}) => {
+  console.log(trainer);
   let basic = (
     <>
       <div className="flex gap-4 justify-center">
@@ -218,8 +220,8 @@ const PricingTable = () => {
                   Get started with the essentials:
                 </p>
                 <div className="mb-7">{basic}</div>
-                <a
-                  href="javascript:void(0)"
+                <Link
+                  to={`/payment/basic/${trainer}/${day}`}
                   className="
                   w-full
                   block
@@ -237,7 +239,7 @@ const PricingTable = () => {
                   "
                 >
                   Join Now
-                </a>
+                </Link>
                 <div>
                   <span className="absolute right-0 top-7 z-[-1]">
                     <svg
@@ -547,8 +549,8 @@ const PricingTable = () => {
                   All Basic benefits, plus:
                 </p>
                 <div className="mb-7">{standard}</div>
-                <a
-                  href="javascript:void(0)"
+                <Link
+                  to={`/payment/standard/${trainer}/${day}`}
                   className="
                   w-full
                   block
@@ -565,7 +567,7 @@ const PricingTable = () => {
                   "
                 >
                   Join Now
-                </a>
+                </Link>
                 <div>
                   <span className="absolute right-0 top-7 z-[-1]">
                     <svg
@@ -875,8 +877,8 @@ const PricingTable = () => {
                   All Standard benefits, plus:
                 </p>
                 <div className="mb-7">{premium}</div>
-                <a
-                  href="javascript:void(0)"
+                <Link
+                  to={`/payment/premium/${trainer}/${day}`}
                   className="
                   w-full
                   block
@@ -893,7 +895,7 @@ const PricingTable = () => {
                   "
                 >
                   Join Now
-                </a>
+                </Link>
                 <div>
                   <span className="absolute right-0 top-7 z-[-1]">
                     <svg
