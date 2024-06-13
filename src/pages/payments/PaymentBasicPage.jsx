@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardBody,
@@ -6,38 +6,19 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useParams } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Basic from "./Basic";
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentBasicPage = () => {
-  const { trainer } = useParams();
-  const { day } = useParams();
-  const { user, loading } = useAuth();
-  console.log(trainer, day, "sas");
-
   return (
-    <>
+    <Elements stripe={stripePromise}>
       <div>PaymentBasicPage</div>
-      <Card className="mt-6 w-96">
-        <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            Trainer: {trainer}
-          </Typography>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            Slot: {day}
-          </Typography>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            Price: $29
-          </Typography>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            Email: {user?.email}
-          </Typography>
-          <Typography>Name: {user?.displayName}</Typography>
-        </CardBody>
-        <CardFooter className="pt-0">
-          <Button variant="filled" color="green">Confirm</Button>
-        </CardFooter>
-      </Card>
-    </>
+      <Basic />
+    </Elements>
   );
 };
 
