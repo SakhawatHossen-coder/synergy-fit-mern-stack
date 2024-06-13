@@ -18,7 +18,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const Basic = () => {
+const Standard = () => {
   const { trainer } = useParams();
   const { day } = useParams();
   const { user, loading } = useAuth();
@@ -30,7 +30,7 @@ const Basic = () => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-  const totalPrice = 29;
+  const totalPrice = 59;
   const [dis, setDis] = useState("");
   useEffect(() => {
     if (totalPrice > 0) {
@@ -91,10 +91,10 @@ const Basic = () => {
         // now save the payment in the database
         const payment = {
           trainer: trainer,
-          packageName: "Basic",
+          packageName: "Standard",
           slot: day,
           email: user?.email,
-          price:totalPrice,
+          price: totalPrice,
           transactionId: paymentIntent.id,
           date: new Date(), // utc date convert. use moment js to
           // cartIds: cart.map((item) => item._id),
@@ -118,7 +118,6 @@ const Basic = () => {
       }
     }
   };
-
   return (
     <Card className="mt-6 w-96">
       <form onSubmit={handleSubmit}>
@@ -130,10 +129,10 @@ const Basic = () => {
             Slot: {day}
           </Typography>
           <Typography variant="h5" color="blue-gray" className="mb-2">
-            Price: $29
+            Price: $59
           </Typography>
           <Typography variant="h5" color="blue-gray" className="mb-2">
-            Package: Basic
+            Package: Standard
           </Typography>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             Email: {user?.email}
@@ -168,4 +167,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export default Standard;
