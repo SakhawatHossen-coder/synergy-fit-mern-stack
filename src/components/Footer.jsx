@@ -17,8 +17,9 @@ const Footer = () => {
               </div>
 
               <p className="mt-4 max-w-xs text-gray-500">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                non cupiditate quae nam molestias.
+                We are revolutionizing the way you approach health and wellness.
+                At SynergyFit, we're passionate about empowering individuals to
+                lead active, fulfilling lives.
               </p>
 
               <ul className="mt-8 flex gap-6">

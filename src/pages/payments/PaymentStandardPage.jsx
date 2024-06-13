@@ -8,7 +8,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentStandardPage = () => {
   return (
     <div>
-      PaymentStandardPage
+     
       <Elements stripe={stripePromise}>
         <Standard />
       </Elements>

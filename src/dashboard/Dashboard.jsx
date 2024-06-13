@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { BiPlusCircle } from "react-icons/bi";
 import { FaPen, FaUser } from "react-icons/fa";
 import { PiNewspaperLight, PiPenNib } from "react-icons/pi";
-import { TbGymnastics } from "react-icons/tb";
+import { TbActivity, TbGymnastics } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 
-const Dashboard = ({ isAdmin, isTrainer }) => {
+const Dashboard = ({ isAdmin, isTrainer, isMember }) => {
   const [isActive, setActive] = useState(false);
   // console.log(isAdmin, isTrainer);
+  console.log(isMember, "member");
   const handleToggle = () => {
     setActive(!isActive);
   };
@@ -92,6 +93,53 @@ const Dashboard = ({ isAdmin, isTrainer }) => {
         <PiPenNib />
         Manage Slot
       </NavLink>
+      <NavLink
+        to="add-forum"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <FaPen />
+        Add Forum
+      </NavLink>
+    </>
+  );
+  const MEMBER = (
+    <>
+      <NavLink
+        to="activity-log"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <TbActivity />
+        Activity Log
+      </NavLink>
+      <NavLink
+        to="user-profile"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        <FaUser />
+        User Profile
+      </NavLink>
+      <NavLink
+        to="recommend"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      >
+        Recommend Classes
+      </NavLink>
     </>
   );
   return (
@@ -111,17 +159,7 @@ const Dashboard = ({ isAdmin, isTrainer }) => {
             <nav className="flex-1 px-2 space-y-4 py-4 bg-blue-900">
               {isAdmin ? ADMIN : ""}
               {isTrainer && TRAINER}
-              <NavLink
-                to="user-profile"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
-                    isActive ? "bg-teal-900" : "text-black"
-                  }`
-                }
-              >
-                <FaUser />
-                User Profile
-              </NavLink>
+              {!isMember && !isTrainer &&  MEMBER}
             </nav>
           </div>
         </div>

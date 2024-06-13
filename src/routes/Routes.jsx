@@ -26,6 +26,7 @@ import TrainerBook from "../pages/TrainerBook";
 import PaymentBasicPage from "../pages/payments/PaymentBasicPage";
 import PaymentStandardPage from "../pages/payments/PaymentStandardPage";
 import PaymentPremiumPage from "../pages/payments/PaymentPremiumPage";
+import ActivityPage from "../dashboard/ActivityPage";
 
 export const router = createBrowserRouter([
   {
@@ -150,6 +151,10 @@ export const router = createBrowserRouter([
       {
         path: "manage-slot",
         element: <ManageSlotTrainer />,
+      },
+      {
+        path: "activity-log",
+        element: <ActivityPage />,
       },
     ],
   },

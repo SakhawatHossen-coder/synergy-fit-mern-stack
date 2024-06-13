@@ -16,7 +16,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentBasicPage = () => {
   return (
     <Elements stripe={stripePromise}>
-      <div>PaymentBasicPage</div>
+     
       <Basic />
     </Elements>
   );
