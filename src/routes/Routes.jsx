@@ -27,6 +27,7 @@ import PaymentBasicPage from "../pages/payments/PaymentBasicPage";
 import PaymentStandardPage from "../pages/payments/PaymentStandardPage";
 import PaymentPremiumPage from "../pages/payments/PaymentPremiumPage";
 import ActivityPage from "../dashboard/ActivityPage";
+import Recommend from "../dashboard/Recommend";
 
 export const router = createBrowserRouter([
   {
@@ -155,6 +156,10 @@ export const router = createBrowserRouter([
       {
         path: "activity-log",
         element: <ActivityPage />,
+      },
+      {
+        path: "recommend",
+        element: <Recommend />,
       },
     ],
   },

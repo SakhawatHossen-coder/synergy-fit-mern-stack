@@ -31,13 +31,13 @@ const AppliedTrainersAdmin = () => {
   });
   const delHand = () => {};
   const AppTrainer = trainers.filter(function (train) {
-    return train.userRole === "Member";
+    return train.status === "Pending";
   });
   if (isLoading) return <Spinner className="mx-auto" />;
   // console.log(trainers);
   return (
     <div>
-      AppliedTrainersAdmin
+      Applied Trainers.
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
@@ -59,7 +59,7 @@ const AppliedTrainersAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {AppTrainer.length>0 ? (
+            {AppTrainer.length > 0 ? (
               AppTrainer?.map((train, index) => {
                 return (
                   <AppTrainerTable

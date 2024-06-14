@@ -159,7 +159,7 @@ const Dashboard = ({ isAdmin, isTrainer, isMember }) => {
             <nav className="flex-1 px-2 space-y-4 py-4 bg-blue-900">
               {isAdmin ? ADMIN : ""}
               {isTrainer && TRAINER}
-              {!isMember && !isTrainer &&  MEMBER}
+              {!isMember && !isTrainer && MEMBER}
             </nav>
           </div>
         </div>

@@ -37,7 +37,7 @@ const AllTrainersAdmin = () => {
     return train.userRole === "Trainer";
   });
   if (isLoading) return <Spinner className="mx-auto" />;
-  console.log(trainers);
+
   return (
     <div>
       <div>

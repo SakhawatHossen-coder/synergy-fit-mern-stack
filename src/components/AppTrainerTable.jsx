@@ -7,11 +7,14 @@ import { Button, Typography } from "@material-tailwind/react";
 import { CiEdit } from "react-icons/ci";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import Modal from "antd/es/modal/Modal";
+import Reject from "./Reject";
 
 const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { fullName, email, userRole, weekDays, age, status } = train;
+  const [openn, setOpenn] = useState(false);
 
   if (userRole !== "Member") {
     return <p>No Applied Trainer..Yet</p>;
@@ -32,6 +35,20 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
       setIsOpen(false);
     },
   });
+  const handleSubmit = async () => {
+    const Role = {
+      userRole: "Member",
+      status: "Rejected",
+    };
+    try {
+      await mutateAsync(Role);
+      refetch();
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
+  console.log(openn);
   return (
     <>
       <tr className="even:bg-blue-gray-50/50">
@@ -65,6 +82,7 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Confirm",
+                cancelButtonText: "Reject",
               }).then(async (result) => {
                 if (result.isConfirmed) {
                   if (user?.email === email) {
@@ -86,6 +104,8 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
                     text: `${fullName}has become Trainer.`,
                     icon: "success",
                   });
+                } else {
+                  handleSubmit();
                 }
               });
             }}
