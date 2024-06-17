@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   CardFooter,
+  Chip,
 } from "@material-tailwind/react";
 import { FaUpDown } from "react-icons/fa6";
 import { BiDownArrow, BiDownvote, BiUpArrow, BiUpvote } from "react-icons/bi";
@@ -29,6 +30,7 @@ const ForumPostCard = ({ post }) => {
     setValue("filled");
     setDis("disabled");
   };
+  // console.log(post);
   return (
     <Card className="w-full max-w-[48rem] flex-col">
       <CardHeader
@@ -72,6 +74,9 @@ const ForumPostCard = ({ post }) => {
           </Button>
         </a> */}
       </CardBody>
+      <CardFooter>
+        {post.badge ? <Button>ADMIN</Button> : <Button>Trainer</Button>}
+      </CardFooter>
       <CardFooter>
         <Typography variant="h6" color="gray" className="mb-4 uppercase">
           Author: {writerName}

@@ -8,11 +8,16 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
 import Select from "react-select";
+import useAdmin from "../hooks/useAdmin";
+import useTrainer from "../hooks/useTrainer";
+import { useNavigate } from "react-router-dom";
 
 const AddForumPage = () => {
   const [tags, setTags] = useState([]);
-
+  const [isAdmin] = useAdmin();
+  const [isTrainer] = useTrainer();
   const { user, loading, setLoading } = useAuth();
+  const navigate=useNavigate()
   const axiosCommon = useAxios();
   const {
     register,
@@ -50,8 +55,8 @@ const AddForumPage = () => {
     onSuccess: () => {
       console.log("Forum post saved successfully");
       toast.success("Forum post saved successfully");
-      // navigate("/")
       reset();
+      navigate("/all-forum-post");
     },
   });
 
@@ -62,6 +67,7 @@ const AddForumPage = () => {
       userRole: "none",
       Tags: tags,
       writerName: user?.displayName,
+      badge: isAdmin,
     };
     try {
       //post to server
