@@ -80,7 +80,7 @@ const SlotForm = ({ t, isLoading }) => {
       });
       // setArr(newArr);
     });
-  console.log(classTag());
+  console.log(t);
   const options2 = classTag();
   const { mutateAsync } = useMutation({
     mutationFn: async (slotData) => {
@@ -101,6 +101,7 @@ const SlotForm = ({ t, isLoading }) => {
       days: tags,
       class:day,
       fullName: t?.fullName,
+      email:t?.email,
       age: t?.age,
       expertise: t?.expertise,
       bio: t?.bioData,
@@ -135,6 +136,25 @@ const SlotForm = ({ t, isLoading }) => {
               autoComplete="given-name"
               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               defaultValue={t?.fullName}
+              disabled
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            htmlFor="Email"
+            className="block text-sm font-semibold leading-6 text-gray-900"
+          >
+            Email
+          </label>
+          <div className="mt-2.5">
+            <input
+              type="email"
+              name="first-name"
+              id="first-name"
+              autoComplete="given-name"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              defaultValue={t?.email}
               disabled
             />
           </div>
