@@ -20,7 +20,7 @@ const LoginPage = () => {
   } = useForm();
   const onSubmit = async (data) => {
     let { email, password } = data;
-    console.log(data);
+   
     try {
       setLoading(true);
       await login(email, password);
@@ -28,7 +28,7 @@ const LoginPage = () => {
       toast.success("login successful");
     } catch (error) {
       console.error(error);
-      toast.error(error.message);
+      toast.error("login failed");
       setLoading(false);
     }
   };

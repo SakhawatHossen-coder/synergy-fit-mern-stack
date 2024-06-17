@@ -3,6 +3,7 @@ import React from "react";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import SlotForm from "../components/SlotForm";
+import { Spinner } from "@material-tailwind/react";
 
 const AddSlotTrainer = () => {
   const { user, loading, setLoading } = useAuth();
@@ -22,6 +23,7 @@ const AddSlotTrainer = () => {
     },
   });
   console.log(trainer);
+  if (isLoading) return <Spinner className="mx-auto" />;
 
   return (
     <>

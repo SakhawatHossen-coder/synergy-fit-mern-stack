@@ -7,6 +7,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 import { Spinner } from "@material-tailwind/react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const SlotForm = ({ t, isLoading }) => {
   const { user, loading, setLoading } = useAuth();
@@ -98,6 +99,7 @@ const SlotForm = ({ t, isLoading }) => {
     const newSlotInfo = {
       ...data,
       days: tags,
+      class:day,
       fullName: t?.fullName,
       age: t?.age,
       expertise: t?.expertise,
@@ -112,7 +114,6 @@ const SlotForm = ({ t, isLoading }) => {
       setLoading(false);
     }
   };
-  if (isLoading) return <Spinner className="mx-auto" />;
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
