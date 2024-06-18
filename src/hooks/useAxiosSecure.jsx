@@ -9,19 +9,19 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   axiosSecure.interceptors.request.use(
-    (config) => {
+  function  (config)  {
       const token = localStorage.getItem("accessToken");
       config.headers.authorization = `bearer ${token}`;
       return config;
     },
-    (error) => {
+    function(error) {
       return Promise.reject(error);
     }
   );
 
   //intercepts 401 and 403 status
   axiosSecure.interceptors.response.use(
-    (response) => {
+   function (response)  {
       return response;
     },
     async (error) => {
