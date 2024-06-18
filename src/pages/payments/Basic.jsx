@@ -94,11 +94,11 @@ const Basic = () => {
           packageName: "Basic",
           slot: day,
           email: user?.email,
-          price:totalPrice,
+          photo: user?.photoURL,
+          name: user?.displayName,
+          date: new Date().toLocaleDateString(),
+          price: totalPrice,
           transactionId: paymentIntent.id,
-          date: new Date(), // utc date convert. use moment js to
-          // cartIds: cart.map((item) => item._id),
-          // menuItemIds: cart.map((item) => item.menuId),
           status: "successful",
         };
         const res = await axiosSecure.post("/payments", payment);
@@ -118,7 +118,7 @@ const Basic = () => {
       }
     }
   };
-
+  console.log(user);
   return (
     <Card className="mt-6 w-96 mx-auto">
       <form onSubmit={handleSubmit}>

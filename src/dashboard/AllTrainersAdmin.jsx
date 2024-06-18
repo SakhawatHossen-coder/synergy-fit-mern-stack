@@ -29,7 +29,7 @@ const AllTrainersAdmin = () => {
   } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/trainer`);
+      const { data } = await axiosSecure.get(`/trainer`);
       return data;
     },
   });

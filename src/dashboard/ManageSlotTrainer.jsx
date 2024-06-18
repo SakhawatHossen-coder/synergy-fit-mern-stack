@@ -17,7 +17,7 @@ const ManageSlotslots = () => {
     queryKey: ["slots"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/trainer-slot/${user?.displayName}/${user?.email}`
+        `/trainer-slot/${user?.email}`
       );
       return data;
     },

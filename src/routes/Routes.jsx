@@ -28,6 +28,7 @@ import PaymentStandardPage from "../pages/payments/PaymentStandardPage";
 import PaymentPremiumPage from "../pages/payments/PaymentPremiumPage";
 import ActivityPage from "../dashboard/ActivityPage";
 import Recommend from "../dashboard/Recommend";
+import BalanceAdmin from "../dashboard/BalanceAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -132,6 +133,10 @@ export const router = createBrowserRouter([
       {
         path: "applied-trainers-admin",
         element: <AppliedTrainersAdmin />,
+      },
+      {
+        path: "balance-admin",
+        element: <BalanceAdmin />,
       },
       {
         path: "add-classes",

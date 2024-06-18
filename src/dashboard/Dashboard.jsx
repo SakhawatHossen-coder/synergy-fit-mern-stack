@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiPlusCircle } from "react-icons/bi";
 import { FaPen, FaUser } from "react-icons/fa";
+import { MdAccountBalance } from "react-icons/md";
 import { PiNewspaperLight, PiPenNib } from "react-icons/pi";
 import { TbActivity, TbGymnastics } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
@@ -55,6 +56,16 @@ const Dashboard = ({ isAdmin, isTrainer, isMember }) => {
         }
       >
         Add New Classes
+      </NavLink>
+      <NavLink
+        to="balance-admin"
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 text-white rounded-lg hover:bg-teal-700 transition-colors duration-300 transform ${
+            isActive ? "bg-teal-900" : "text-black"
+          }`
+        }
+      > <MdAccountBalance/>
+        Balance
       </NavLink>
       <NavLink
         to="add-forum"

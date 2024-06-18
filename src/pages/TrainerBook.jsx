@@ -22,7 +22,7 @@ const TrainerBook = () => {
     queryKey: ["slots"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/trainer-slot/${user?.displayName}/${user?.email}`
+        `/trainer-slot/${user?.email}`
       );
       return data;
     },
@@ -54,7 +54,7 @@ const TrainerBook = () => {
     let yoga = cls.Tags[0];
     let hiit = cls.Tags[1];
     let strtrain = cls.Tags[2];
-    console.log(yoga.includes("Yoga"))
+    // console.log(yoga.includes())
   });
   const yogaTrainer = trainers.filter(function (train) {
     return train.option2 === "Yoga";
