@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, Typography, Avatar } from "@material-tailwind/react";
 
-const CustomerList = () => {
+const CustomerList = ({ payments }) => {
+  const [total, setTotal] = useState([]);
+  const calculateTotal = () => {
+    const newTotal = payments.reduce((acc, current) => acc + current.price, 0);
+    setTotal(newTotal);
+  };
+
+  // Calling calculateTotal on component mount or when payments change
+  useEffect(() => {
+    calculateTotal();
+  }, [payments]);
+  console.log(total);
+  let defImg =
+    "https://img.freepik.com/free-photo/androgynous-avatar-non-binary-queer-person_23-2151100226.jpg?size=626&ext=jpg";
   return (
     <Card className="w-96">
       <CardBody>
@@ -9,38 +22,34 @@ const CustomerList = () => {
           <Typography variant="h5" color="blue-gray" className="">
             Latest Customers
           </Typography>
-          <Typography
-            as="a"
-            href="#"
-            variant="small"
-            color="blue"
-            className="font-bold"
-          >
-            View all
+          <Typography variant="small" color="blue" className="font-bold">
+            Grand Total={total} $
           </Typography>
         </div>
         <div className="divide-y divide-gray-200">
-          {customers.map(({ name, email, price, image }, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between pb-3 pt-3 last:pb-0"
-            >
-              <div className="flex items-center gap-x-3">
-                <Avatar size="sm" src={image} alt={name} />
-                <div>
-                  <Typography color="blue-gray" variant="h6">
-                    {name}
-                  </Typography>
-                  <Typography variant="small" color="gray">
-                    {email}
-                  </Typography>
+          {payments.map(({ name, email, price, photo }, index) => {
+            return (
+              <div
+                key={index}
+                className="flex items-center justify-between pb-3 pt-3 last:pb-0"
+              >
+                <div className="flex items-center gap-x-3">
+                  <Avatar size="sm" src={photo || defImg} alt={name} />
+                  <div>
+                    <Typography color="blue-gray" variant="h6">
+                      {name || "Anonymus"}
+                    </Typography>
+                    <Typography variant="small" color="gray">
+                      {email}
+                    </Typography>
+                  </div>
                 </div>
+                <Typography color="blue-gray" variant="h6">
+                  ${price}
+                </Typography>
               </div>
-              <Typography color="blue-gray" variant="h6">
-                ${price}
-              </Typography>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </CardBody>
     </Card>
