@@ -7,9 +7,13 @@ import TrainerInfoCard from "../components/TrainerInfoCard";
 import TrainerSlotCard from "../components/TrainerSlotCard";
 import { FaDumbbell } from "react-icons/fa6";
 import SlotCard from "../components/SlotCard";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAuth from "../hooks/useAuth";
 
 const DetailsTrainer = () => {
   const { id } = useParams();
+  const { user, loading, setLoading } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const axiosCommon = useAxios();
   const {
     data: trainer = {},
@@ -22,8 +26,19 @@ const DetailsTrainer = () => {
       return data;
     },
   });
-  if (isLoading) return <Spinner />;
-  console.log(trainer);
+  console.log(trainer, "as");
+
+  const { data: slots = [] } = useQuery({
+    queryKey: ["slots"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(
+        `/trainer-slot/${user?.displayName}/${user?.email}`
+      );
+      return data;
+    },
+  });
+  console.log(slots);
+  if (isLoading) return <Spinner className="w-full mx-auto" />;
 
   return (
     <div>
@@ -44,9 +59,11 @@ const DetailsTrainer = () => {
         <Typography variant="h5" color="blue-gray" className="mb-2 capitalize">
           available time slots for booking sessions
         </Typography>
-        {trainer.weekDays?.map((a, idx) => (
-          <SlotCard trainer={trainer} a={a} key={idx}/>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {trainer.weekDays?.map((a, idx) => (
+            <SlotCard trainer={trainer} a={a} key={idx} slots={slots}/>
+          ))}
+        </div>
       </div>
     </div>
   );

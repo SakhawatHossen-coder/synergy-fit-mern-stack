@@ -14,7 +14,7 @@ const TrainerBookingPage = () => {
           Your Trainer: {trainer}
         </Typography>
       </div>
-        <Typography className="bg-cyan-800 w-1/2 mx-auto text-white rounded-lg text-2xl mt-4">Time Slot: {time}</Typography>
+        <Typography className="bg-cyan-800 w-1/2 mx-auto text-white rounded-lg text-2xl mt-4 p-4">Available Time: {time}</Typography>
       <PricingTable />
     </div>
   );
