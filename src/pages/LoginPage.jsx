@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Button } from "@material-tailwind/react";
 import useAxios from "../hooks/useAxios";
 import log from "../assets/login.svg";
+import { Helmet } from "react-helmet";
 const LoginPage = () => {
   const { login, googleLogin, setLoading, user, updateUserProfile } = useAuth();
   const navigate = useNavigate();
@@ -59,6 +60,11 @@ const LoginPage = () => {
   };
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Login Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="h-screen flex">
         <img src={log} alt="" />
 
@@ -110,7 +116,6 @@ const LoginPage = () => {
               <input
                 className="pl-2 outline-none border-none"
                 type="password"
-               
                 placeholder="Password"
                 {...register("password", { required: true })}
               />

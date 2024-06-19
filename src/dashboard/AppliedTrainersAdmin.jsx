@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import AppTrainerTable from "../components/AppTrainerTable";
+import { Helmet } from "react-helmet";
 
 const AppliedTrainersAdmin = () => {
   const { user } = useAuth();
@@ -29,7 +30,7 @@ const AppliedTrainersAdmin = () => {
       return data;
     },
   });
-  const delHand = () => {};
+
   const AppTrainer = trainers.filter(function (train) {
     return train.status === "Pending";
   });
@@ -37,7 +38,11 @@ const AppliedTrainersAdmin = () => {
   // console.log(trainers);
   return (
     <div>
-      Applied Trainers.
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Applied Trainers Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

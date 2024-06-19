@@ -13,6 +13,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Basic from "./Basic";
 import useAxios from "../../hooks/useAxios";
+import { Helmet } from "react-helmet";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentBasicPage = () => {
   const { id } = useParams();
@@ -32,9 +33,16 @@ const PaymentBasicPage = () => {
   //  console.log(traine.slotName);
 
   return (
-    <Elements stripe={stripePromise}>
-      <Basic traine={traine} />
-    </Elements>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Payment Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
+      <Elements stripe={stripePromise}>
+        <Basic traine={traine} />
+      </Elements>
+    </>
   );
 };
 

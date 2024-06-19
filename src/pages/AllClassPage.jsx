@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../hooks/useAxios";
 import { Spinner, Typography } from "@material-tailwind/react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const AllClassPage = () => {
   const axiosCommon = useAxios();
@@ -27,6 +28,11 @@ const AllClassPage = () => {
   if (isLoading) return <Spinner className="mx-auto" />;
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || All Class Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="my-10">
         <Typography variant="h3" color="teal">
           Explore Your Potential: Discover Our Diverse Range of Fitness Classes

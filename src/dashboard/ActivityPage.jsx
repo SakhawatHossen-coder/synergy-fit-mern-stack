@@ -10,6 +10,7 @@ import {
   PopoverContent,
   Button,
 } from "@material-tailwind/react";
+import { Helmet } from "react-helmet";
 const ActivityPage = () => {
   const axiosCommon = useAxios();
   const { user } = useAuth();
@@ -31,6 +32,11 @@ const ActivityPage = () => {
   if (isLoading) return <Spinner className="mx-auto" />;
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Your Activity Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <Typography variant="h3" color="teal">
         Your Activity
       </Typography>

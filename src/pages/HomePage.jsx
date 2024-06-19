@@ -5,10 +5,16 @@ import About from "../components/About";
 import TeamSection from "../components/Team-section/TeamSection";
 import Newsletter from "../components/Newsletter";
 import Slider from "../components/Slider";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Home Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <Banner />
       <Feature />
       <About />

@@ -3,6 +3,7 @@ import React from "react";
 import ForumPostCard from "../components/ForumPostCard";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const ForumPage = () => {
   const axiosCommon = useAxios();
@@ -13,10 +14,15 @@ const ForumPage = () => {
       return data;
     },
   });
-  console.log(posts);
+
   if (isLoading) return <Spinner />;
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Forum Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="my-4">
         <Typography variant="h1" color="teal">
           Fitness & Wellness Discussions

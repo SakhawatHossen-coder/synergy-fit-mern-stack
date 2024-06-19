@@ -1,5 +1,6 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const UserProfile = () => {
   const { user, loading } = useAuth();
@@ -10,13 +11,18 @@ const UserProfile = () => {
     month: "long",
     day: "numeric",
   };
-  console.log(lastStatus);
+
   let a = Date(lastStatus);
 
   const formattedDate = a.toLocaleString(options);
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || User Profile</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="h-screen w-full bg-gray-50 flex justify-center items-center">
         <div className="h-72 w-96 absolute flex justify-center items-center">
           <img

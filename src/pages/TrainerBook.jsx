@@ -9,6 +9,7 @@ import useAxios from "../hooks/useAxios";
 import BookingCardClass from "../components/BookingCardClass";
 import BookingCardClassYoga from "../components/BookingCardClassYoga";
 import BookingCardClassHiit from "../components/BookingCardClassHiit";
+import { Helmet } from "react-helmet";
 
 const TrainerBook = () => {
   const { id } = useParams();
@@ -81,6 +82,11 @@ const TrainerBook = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Trainer Booked Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="mt-10">
         <Typography variant="h3" color="teal">
           Your Trainer: {trainer}

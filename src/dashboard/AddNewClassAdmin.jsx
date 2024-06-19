@@ -8,6 +8,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
 import Select from "react-select";
+import { Helmet } from "react-helmet";
 
 const AddNewClassAdmin = () => {
   const [tags, setTags] = useState([]);
@@ -66,6 +67,11 @@ const AddNewClassAdmin = () => {
   };
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || add classes Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="isolate bg-white px-6 py-4 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

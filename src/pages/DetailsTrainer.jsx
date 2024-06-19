@@ -9,6 +9,7 @@ import { FaDumbbell } from "react-icons/fa6";
 import SlotCard from "../components/SlotCard";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const DetailsTrainer = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const DetailsTrainer = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["sa"],
+    queryKey: ["Trainer"],
     queryFn: async () => {
       const { data } = await axiosCommon.get(`/trainer/${id}`);
       return data;
@@ -40,6 +41,11 @@ const DetailsTrainer = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Trainer Details Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <Link to="/become-trainer" className="flex justify-end">
         <Button className="flex gap-2 items-center" size="lg">
           <FaDumbbell />

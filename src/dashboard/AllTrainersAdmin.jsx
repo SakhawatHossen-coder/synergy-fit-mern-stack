@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import Alert from "../components/Alert";
+import { Helmet } from "react-helmet";
 
 const AllTrainersAdmin = () => {
   const axiosSecure = useAxiosSecure();
@@ -40,6 +41,11 @@ const AllTrainersAdmin = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || All Trainers Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div>
         <div className="text-gray-900 rounded-lg shadow-lg">
           <div className="p-4 flex">

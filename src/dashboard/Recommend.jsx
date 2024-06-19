@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const Recommend = () => {
   ///recommend-class
@@ -25,9 +26,14 @@ const Recommend = () => {
   });
 
   if (isLoading) return <Spinner className="mx-auto" />;
-  console.log(classes);
+
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Recommendation Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="my-10">
         <Typography variant="h3" color="teal">
           Explore Your Potential: We Recommend You Diverse Range of Fitness

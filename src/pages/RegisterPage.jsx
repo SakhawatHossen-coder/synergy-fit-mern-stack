@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../hooks/useAxios";
+import { Helmet } from "react-helmet";
 
 const RegisterPage = () => {
   const axiosCommon = useAxios();
@@ -41,6 +42,11 @@ const RegisterPage = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || Register Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <div className="min-w-screen min-h-screen  flex items-center justify-center px-5 py-5">
         <div
           className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"

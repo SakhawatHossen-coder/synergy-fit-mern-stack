@@ -2,6 +2,7 @@ import { Spinner, Typography } from "@material-tailwind/react";
 import React from "react";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const DashStat = () => {
   let axiosCommon = useAxios();
@@ -17,6 +18,11 @@ const DashStat = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>SynergyFit || All Newsletter Subscribers Page</title>
+        <link rel="canonical" href="https://synergy-fit.netlify.app" />
+      </Helmet>
       <Typography variant="h2" color="teal">
         All Newsletter Subscribers {subscribers.length}
       </Typography>
