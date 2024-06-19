@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Nav = () => {
+  let defImg =
+    "https://img.freepik.com/free-photo/androgynous-avatar-non-binary-queer-person_23-2151100226.jpg?size=626&ext=jpg";
   const { user, logout } = useAuth();
   let navItems = (
     <>
@@ -38,7 +40,6 @@ const Nav = () => {
           </Button>
         </li>
       </NavLink>
-  
     </>
   );
   return (
@@ -91,10 +92,7 @@ const Nav = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={
-                      user?.photoURL ||
-                      "https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    }
+                    src={user?.photoURL || defImg}
                   />
                 </div>
               </div>

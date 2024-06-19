@@ -12,7 +12,7 @@ const CustomerList = ({ payments }) => {
   useEffect(() => {
     calculateTotal();
   }, [payments]);
-  console.log(total);
+
   let defImg =
     "https://img.freepik.com/free-photo/androgynous-avatar-non-binary-queer-person_23-2151100226.jpg?size=626&ext=jpg";
   return (
