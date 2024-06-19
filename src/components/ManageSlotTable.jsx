@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Typography } from "@material-tailwind/react";
 
 const ManageSlotTable = ({ slots }) => {
-  console.log(slots);
+  // console.log(slots);
   return (
     <Card className="h-full w-full overflow-scroll">
       <table className="w-full min-w-max table-auto text-left">

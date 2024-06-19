@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 const Dashboard = ({ isAdmin, isTrainer, isMember }) => {
   const [isActive, setActive] = useState(false);
   // console.log(isAdmin, isTrainer);
-  console.log(isMember, "member");
+  // console.log(isTrainer, "tr");
   const handleToggle = () => {
     setActive(!isActive);
   };
@@ -64,7 +64,9 @@ const Dashboard = ({ isAdmin, isTrainer, isMember }) => {
             isActive ? "bg-teal-900" : "text-black"
           }`
         }
-      > <MdAccountBalance/>
+      >
+        {" "}
+        <MdAccountBalance />
         Balance
       </NavLink>
       <NavLink
@@ -170,7 +172,7 @@ const Dashboard = ({ isAdmin, isTrainer, isMember }) => {
             <nav className="flex-1 px-2 space-y-4 py-4 bg-blue-900">
               {isAdmin ? ADMIN : ""}
               {isTrainer && TRAINER}
-              {!isMember && !isTrainer && MEMBER}
+              {!isAdmin && !isTrainer && MEMBER}
             </nav>
           </div>
         </div>

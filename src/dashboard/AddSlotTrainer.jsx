@@ -23,7 +23,7 @@ const AddSlotTrainer = () => {
       return data;
     },
   });
-  console.log(trainer);
+  // console.log(trainer);
   if (isLoading) return <Spinner className="mx-auto" />;
 
   return (

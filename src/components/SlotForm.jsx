@@ -25,7 +25,7 @@ const SlotForm = ({ t, isLoading }) => {
       return data;
     },
   });
-  console.log(classes);
+  // console.log(classes);
   const {
     register,
     handleSubmit,
@@ -80,7 +80,7 @@ const SlotForm = ({ t, isLoading }) => {
       });
       // setArr(newArr);
     });
-  console.log(t);
+  // console.log(t);
   const options2 = classTag();
   const { mutateAsync } = useMutation({
     mutationFn: async (slotData) => {
@@ -99,9 +99,9 @@ const SlotForm = ({ t, isLoading }) => {
     const newSlotInfo = {
       ...data,
       days: tags,
-      class:day,
+      class: day,
       fullName: t?.fullName,
-      email:t?.email,
+      email: t?.email,
       age: t?.age,
       expertise: t?.expertise,
       bio: t?.bioData,

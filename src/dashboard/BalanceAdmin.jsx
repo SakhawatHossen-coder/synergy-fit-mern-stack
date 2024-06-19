@@ -18,7 +18,7 @@ const BalanceAdmin = () => {
       return data;
     },
   });
-  console.log(payments);
+  // console.log(payments);
   return (
     <>
       <Helmet>
