@@ -20,10 +20,10 @@ const BalanceAdmin = () => {
   });
   console.log(payments);
   return (
-    <div>
-      BalanceAdmin
+    <div className="flex items-center gap-5">
+      {/* BalanceAdmin */}
       <CustomerList payments={payments} />
-      <ChartChartLine />
+      <ChartChartLine payments={payments} />
     </div>
   );
 };

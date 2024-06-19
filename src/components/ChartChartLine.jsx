@@ -1,63 +1,76 @@
 import React from "react";
+import {
+  BarChart,
+  Bar,
+  Rectangle,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
 
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import useAxios from "../hooks/useAxios";
+import { Spinner, Typography } from "@material-tailwind/react";
+import { useQuery } from "@tanstack/react-query";
 
-const ChartChartLine = () => {
-  const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-  ];
-
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  };
+const ChartChartLine = ({ payments }) => {
+  let axiosCommon = useAxios();
+  const { data: subscribers = [], isLoading } = useQuery({
+    queryKey: ["subscribers"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get("/newsletter");
+      return data;
+    },
+  });
+  if (isLoading) return <Spinner />;
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
+    <div>
+      <Typography className="capitalize font-bold my-3 ">
+        Total newsletter subscribers vs total paid members.
+      </Typography>
+      <BarChart
+        width={500}
+        height={300}
+        data={[
+          {
+            name: "Newletter Subscribers",
+            members: payments.length,
+            subscriber: subscribers.length,
+            amt: 100,
+          },
+          {
+            name: "Paid Members",
+            members: payments.length,
+            subscriber: subscribers.length,
+            amt: 100,
+          },
+        ]}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar
+          dataKey="members"
           fill="#8884d8"
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+          activeBar={<Rectangle fill="pink" stroke="blue" />}
+        />
+        <Bar
+          dataKey="subscriber"
+          fill="#82ca9d"
+          activeBar={<Rectangle fill="gold" stroke="purple" />}
+        />
+      </BarChart>
+    </div>
   );
 };
 
