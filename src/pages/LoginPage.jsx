@@ -43,7 +43,7 @@ const LoginPage = () => {
       };
       const result = await axiosCommon.post("/user", userInfo);
       // return console.log();
-      console.log(result);
+      // console.log(result);
       if (result.status) {
         navigate("/");
         return toast.success("User sign in  Successfully!");

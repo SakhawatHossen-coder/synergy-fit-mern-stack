@@ -21,7 +21,20 @@ const ManageSlotslots = () => {
       return data;
     },
   });
-
+ 
+  const {
+    data: payments = [],
+  } = useQuery({
+    queryKey: ["payments"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/payments`);
+      return data;
+    },
+  });
+   const SLOT = payments.filter(function (pay) {
+     return pay.slotName === "Pending";
+   });
+   console.log(SLOT)
   if (isLoading) return <Spinner className="mx-auto" />;
 
   return (
@@ -31,7 +44,7 @@ const ManageSlotslots = () => {
         <title>SynergyFit || Manage Slot Page</title>
         <link rel="canonical" href="https://synergy-fit.netlify.app" />
       </Helmet>
-      <ManageSlotTable slots={slots} />
+      <ManageSlotTable slots={slots} payments={payments} />
     </div>
   );
 };

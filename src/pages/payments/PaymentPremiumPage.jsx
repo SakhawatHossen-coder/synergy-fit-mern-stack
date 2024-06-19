@@ -26,7 +26,7 @@ const PaymentPremiumPage = () => {
       return data;
     },
   });
-  console.log(traine.slotName);
+  // console.log(traine.slotName);
 
   return (
     <div>

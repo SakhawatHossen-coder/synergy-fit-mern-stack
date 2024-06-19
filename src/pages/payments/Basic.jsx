@@ -32,6 +32,7 @@ const Basic = ({ traine }) => {
   const navigate = useNavigate();
   const totalPrice = 29;
   const [dis, setDis] = useState("");
+  const [count, setCount] = useState(0);
   useEffect(() => {
     if (totalPrice > 0) {
       axiosSecure
@@ -89,6 +90,7 @@ const Basic = ({ traine }) => {
         setTransactionId(paymentIntent.id);
 
         // now save the payment in the database
+        setCount(count + 1);
         const payment = {
           trainer: trainer,
           packageName: "Basic",
@@ -100,6 +102,7 @@ const Basic = ({ traine }) => {
           price: totalPrice,
           slotName: traine.slotName,
           transactionId: paymentIntent.id,
+          bookCount: count + 1,
           status: "successful",
         };
         const res = await axiosSecure.post("/payments", payment);
@@ -119,7 +122,7 @@ const Basic = ({ traine }) => {
       }
     }
   };
- 
+
   return (
     <Card className="mt-6 w-96 mx-auto">
       <form onSubmit={handleSubmit}>

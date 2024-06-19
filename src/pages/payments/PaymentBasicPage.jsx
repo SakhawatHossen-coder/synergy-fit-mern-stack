@@ -14,6 +14,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Basic from "./Basic";
 import useAxios from "../../hooks/useAxios";
 import { Helmet } from "react-helmet";
+import { useQuery } from "@tanstack/react-query";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentBasicPage = () => {
   const { id } = useParams();

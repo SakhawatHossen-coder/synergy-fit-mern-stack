@@ -10,25 +10,41 @@ import {
 } from "@material-tailwind/react";
 import { FaUpDown } from "react-icons/fa6";
 import { BiDownArrow, BiDownvote, BiUpArrow, BiUpvote } from "react-icons/bi";
+import useAuth from "../hooks/useAuth";
 
 const ForumPostCard = ({ post }) => {
   // console.log(post);
   const { writerName, image, title, details, userRole, Tags } = post;
-  const [vote, setVote] = useState(0);
+  const [voteCount, setVoteCount] = useState(0);
+  const { user, loading } = useAuth();
   const [voteDown, setVoteDown] = useState(0);
   const [val, setVal] = useState("outlined");
   const [value, setValue] = useState("outlined");
   const [dis, setDis] = useState("");
+  const [hasVoted, setHasVoted] = useState(false);
   const [disable, setDisable] = useState("");
-  const handleVote = () => {
-    setVote(vote + 1);
-    setVal("filled");
-    setDis("disabled");
+  const handleUpvote = () => {
+    if (user && !hasVoted) {
+      setVoteCount(voteCount + 1);
+      // Call API to update vote on server
+      setVal("filled");
+      setHasVoted(true);
+    } else {
+      console.log("not logged in");
+
+      // Handle user not logged in scenario (e.g., display login message)
+    }
   };
-  const handleDownVote = () => {
-    setVoteDown(vote - 1);
-    setValue("filled");
-    setDis("disabled");
+
+  const handleDownvote = () => {
+    if (user) {
+      setVoteCount(voteCount - 1);
+      // Call API to update vote on server
+      setHasVoted(true);
+    } else {
+      // Handle user not logged in scenario
+      console.log("not logged in");
+    }
   };
   // console.log(post);
   return (
@@ -83,17 +99,16 @@ const ForumPostCard = ({ post }) => {
         </Typography>
         <div className="space-x-4 flex">
           <div className="flex gap-2 items-center">
-            <Button disabled={dis} variant={val} onClick={handleVote}>
+            <Button variant={val} onClick={handleUpvote}>
               <BiUpvote />
             </Button>
-            {vote}
           </div>
           <div className="flex gap-2 items-center">
-            <Button disabled={dis} variant={value} onClick={handleDownVote}>
+            <Button variant={value} onClick={handleDownvote}>
               <BiDownvote />
             </Button>
-            {voteDown}
           </div>
+          <p>Votes: {voteCount}</p>
         </div>
       </CardFooter>
     </Card>
