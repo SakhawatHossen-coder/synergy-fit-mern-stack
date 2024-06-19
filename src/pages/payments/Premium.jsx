@@ -18,7 +18,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const Premium = () => {
+const Premium = ({ traine }) => {
   const { trainer } = useParams();
   const { day } = useParams();
   const { user, loading } = useAuth();
@@ -98,6 +98,7 @@ const Premium = () => {
           transactionId: paymentIntent.id,
           photo: user?.photoURL,
           name: user?.displayName,
+          slotName: traine.slotName,
           date: new Date().toLocaleDateString(),
           status: "successful",
         };
@@ -118,7 +119,7 @@ const Premium = () => {
       }
     }
   };
-
+  // console.log(traine);
   return (
     <Card className="mt-6 w-96 mx-auto">
       <form onSubmit={handleSubmit}>
@@ -126,8 +127,12 @@ const Premium = () => {
           <Typography variant="h5" color="blue-gray" className="mb-2">
             Trainer: {trainer}
           </Typography>
+
           <Typography variant="h5" color="blue-gray" className="mb-2">
-            Slot: {day}
+            Slot Day: {day}
+          </Typography>
+          <Typography variant="h5" color="blue-gray" className="mb-2">
+            Slot Name: {traine.slotName}
           </Typography>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             Price: $99

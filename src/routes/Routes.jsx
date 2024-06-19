@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: `/trainer-booking/:day/:trainer`,
+        path: `/trainer-booking/:id/:day/:trainer`,
         element: (
           <PrivateRoute>
             <TrainerBook />
@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: `/payment/basic/:trainer/:day`,
+        path: `/payment/basic/:id/:trainer/:day`,
         element: (
           <PrivateRoute>
             <PaymentBasicPage />
@@ -101,7 +101,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: `/payment/standard/:trainer/:day`,
+        path: `/payment/standard/:id/:trainer/:day`,
         element: (
           <PrivateRoute>
             <PaymentStandardPage />
@@ -109,7 +109,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: `/payment/premium/:trainer/:day`,
+        path: `/payment/premium/:id/:trainer/:day`,
         element: (
           <PrivateRoute>
             <PaymentPremiumPage />

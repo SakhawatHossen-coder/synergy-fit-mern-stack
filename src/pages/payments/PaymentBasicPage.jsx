@@ -12,12 +12,28 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Basic from "./Basic";
+import useAxios from "../../hooks/useAxios";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentBasicPage = () => {
+  const { id } = useParams();
+  console.log(id);
+  const axiosCommon = useAxios();
+  const {
+    data: traine = {},
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["trainer"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get(`/trainer/${id}`);
+      return data;
+    },
+  });
+  //  console.log(traine.slotName);
+
   return (
     <Elements stripe={stripePromise}>
-     
-      <Basic />
+      <Basic traine={traine} />
     </Elements>
   );
 };

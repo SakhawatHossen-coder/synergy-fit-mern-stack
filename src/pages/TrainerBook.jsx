@@ -11,6 +11,8 @@ import BookingCardClassYoga from "../components/BookingCardClassYoga";
 import BookingCardClassHiit from "../components/BookingCardClassHiit";
 
 const TrainerBook = () => {
+  const { id } = useParams();
+
   const { day } = useParams();
   const { trainer } = useParams();
   const axiosCommon = useAxios();
@@ -21,9 +23,7 @@ const TrainerBook = () => {
   const { data: slots = [], isLoading } = useQuery({
     queryKey: ["slots"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(
-        `/trainer-slot/${user?.email}`
-      );
+      const { data } = await axiosSecure.get(`/trainer-slot/${user?.email}`);
       return data;
     },
   });
@@ -38,12 +38,22 @@ const TrainerBook = () => {
       return data;
     },
   });
+  //
 
-  console.log(classes, "from book");
+  const { data: train = {}, refetch } = useQuery({
+    queryKey: ["trainer"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get(`/trainer/${id}`);
+      return data;
+    },
+  });
+
   const { data: trainers = [] } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/trainer-details/${user?.email}`);
+      const { data } = await axiosSecure.get(
+        `/trainer-details/${train?.email}`
+      );
       return data;
     },
   });
@@ -79,10 +89,10 @@ const TrainerBook = () => {
       <Typography className="bg-cyan-800 w-1/2 mx-auto text-white rounded-lg text-2xl mt-4 p-4">
         Available Day : {day}
         <div>
-          {slots?.map((slot, idx) => (
+          {trainers?.map((slot, idx) => (
             <>
-              <Typography>Available Slot: {slot.SlotName}</Typography>
-              <Typography>Available Time: {slot.slotTime} Hour</Typography>
+              <Typography>Available Slot: {slot.slotName}</Typography>
+              <Typography>Available Time: {slot.timeSlot} Hour</Typography>
             </>
           ))}
         </div>
@@ -98,7 +108,7 @@ const TrainerBook = () => {
           <BookingCardClassHiit tr={tr} />
         ))}
       </div>
-      <PricingTable trainer={trainer} day={day} />
+      <PricingTable trainer={trainer} trainers={trainers} day={day} />
     </div>
   );
 };

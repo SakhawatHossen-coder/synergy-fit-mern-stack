@@ -5,10 +5,12 @@ import { GrYoga } from "react-icons/gr";
 import { MdSpatialTracking } from "react-icons/md";
 import { PiNewspaperClipping } from "react-icons/pi";
 import { TbSocial, TbYoga } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const PricingTable = ({ trainer ,day}) => {
-  console.log(trainer);
+const PricingTable = ({ trainer, day, trainers }) => {
+  console.log(trainers);
+    const { id } = useParams();
+
   let basic = (
     <>
       <div className="flex gap-4 justify-center">
@@ -221,7 +223,7 @@ const PricingTable = ({ trainer ,day}) => {
                 </p>
                 <div className="mb-7">{basic}</div>
                 <Link
-                  to={`/payment/basic/${trainer}/${day}`}
+                  to={`/payment/basic/${id}/${trainer}/${day}`}
                   className="
                   w-full
                   block
@@ -550,7 +552,7 @@ const PricingTable = ({ trainer ,day}) => {
                 </p>
                 <div className="mb-7">{standard}</div>
                 <Link
-                  to={`/payment/standard/${trainer}/${day}`}
+                  to={`/payment/standard/${id}/${trainer}/${day}`}
                   className="
                   w-full
                   block
@@ -878,7 +880,7 @@ const PricingTable = ({ trainer ,day}) => {
                 </p>
                 <div className="mb-7">{premium}</div>
                 <Link
-                  to={`/payment/premium/${trainer}/${day}`}
+                  to={`/payment/premium/${id}/${trainer}/${day}`}
                   className="
                   w-full
                   block

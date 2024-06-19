@@ -7,11 +7,11 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { Link, useParams } from "react-router-dom";
-const SlotCard = ({ a, trainer, slots }) => {
-  console.log(slots);
-  // const { day } = useParams();
+const SlotCard = ({ a, trainer }) => {
+  const { id } = useParams();
+
   return (
-    <Link to={`/trainer-booking/${a}/${trainer.fullName}`}>
+    <Link to={`/trainer-booking/${id}/${a}/${trainer.fullName}`}>
       <Card className="mt-6 w-96">
         <CardBody>
           <Typography
@@ -22,14 +22,9 @@ const SlotCard = ({ a, trainer, slots }) => {
             Available Day: {a}
           </Typography>
           <div>
-            {slots?.map((slot, idx) => (
-              <>
-                <Typography>Available Slot: {slot.SlotName}</Typography>
-                <Typography>Available Time: {slot.slotTime} Hour</Typography>
-              </>
-            ))}
+            <Typography>Slot Name: {trainer.slotName}</Typography>
+            <Typography>Available Time: {trainer.timeSlot} Hour</Typography>
           </div>
-          {/* <Typography>Available Time: {trainer.timeSlot} Hour</Typography> */}
         </CardBody>
       </Card>
     </Link>

@@ -31,13 +31,11 @@ const DetailsTrainer = () => {
   const { data: slots = [] } = useQuery({
     queryKey: ["slots"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(
-        `/trainer-slot/${trainer?.email}`
-      );
+      const { data } = await axiosSecure.get(`/trainer-slot/${trainer?.email}`);
       return data;
     },
   });
-  console.log(slots);
+  // console.log(slots);
   if (isLoading) return <Spinner className="w-full mx-auto" />;
 
   return (
@@ -61,7 +59,7 @@ const DetailsTrainer = () => {
         </Typography>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {trainer.weekDays?.map((a, idx) => (
-            <SlotCard trainer={trainer} a={a} key={idx} slots={slots}/>
+            <SlotCard trainer={trainer} a={a} key={idx} />
           ))}
         </div>
       </div>

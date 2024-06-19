@@ -18,7 +18,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
-const Standard = () => {
+const Standard = ({ traine }) => {
   const { trainer } = useParams();
   const { day } = useParams();
   const { user, loading } = useAuth();
@@ -97,6 +97,7 @@ const Standard = () => {
           price: totalPrice,
           transactionId: paymentIntent.id,
           photo: user?.photoURL,
+          slotName:traine.slotName,
           name: user?.displayName,
           date: new Date().toLocaleDateString(),
           status: "successful",
@@ -126,7 +127,10 @@ const Standard = () => {
             Trainer: {trainer}
           </Typography>
           <Typography variant="h5" color="blue-gray" className="mb-2">
-            Slot: {day}
+            Slot Day: {day}
+          </Typography>
+          <Typography variant="h5" color="blue-gray" className="mb-2">
+            Slot Name: {traine.slotName}
           </Typography>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             Price: $59
