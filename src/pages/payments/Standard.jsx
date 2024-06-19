@@ -22,7 +22,7 @@ const Standard = ({ traine }) => {
   const { trainer } = useParams();
   const { day } = useParams();
   const { user, loading } = useAuth();
-  console.log(trainer, day, "sas");
+  // console.log(trainer, day, "sas");
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -37,7 +37,7 @@ const Standard = ({ traine }) => {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
+          // console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -62,10 +62,10 @@ const Standard = ({ traine }) => {
     });
 
     if (error) {
-      console.log("payment error", error);
+      // console.log("payment error", error);
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
+      // console.log("payment method", paymentMethod);
       setError("");
     }
     // confirm payment
@@ -83,9 +83,9 @@ const Standard = ({ traine }) => {
     if (confirmError) {
       console.log("confirm error");
     } else {
-      console.log("payment intent", paymentIntent);
+      // console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log("transaction id", paymentIntent.id);
+        // console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
         // now save the payment in the database
@@ -103,7 +103,7 @@ const Standard = ({ traine }) => {
           status: "successful",
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log("payment saved", res.data);
+        // console.log("payment saved", res.data);
 
         if (res.data?.insertedId) {
           Swal.fire({
@@ -113,7 +113,8 @@ const Standard = ({ traine }) => {
             showConfirmButton: false,
             timer: 1500,
           });
-          // navigate("/dashboard/paymentHistory");
+                   navigate("/");
+
           setDis("disabled");
         }
       }

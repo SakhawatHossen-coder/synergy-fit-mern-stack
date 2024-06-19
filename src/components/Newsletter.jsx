@@ -77,8 +77,8 @@ const Newsletter = () => {
                 type="checkbox"
                 value="1"
                 className="hidden"
-                tabindex="-1"
-                autocomplete="off"
+                tabIndex="-1"
+                autoComplete="off"
               />
               <Button
                 type="submit"

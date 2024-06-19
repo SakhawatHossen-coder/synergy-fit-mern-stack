@@ -29,7 +29,7 @@ const RegisterPage = () => {
       await createUser(email, password);
       await updateUserProfile(name, photo);
       const res = await axiosCommon.post("/user", userInfo);
-      console.log(res);
+
       if (res.data.insertedId) {
         toast.success("User Created Successfully!");
         navigate("/login");

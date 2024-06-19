@@ -24,7 +24,7 @@ const AllClassPage = () => {
       return data;
     },
   });
-  console.log(trainers);
+  // console.log(trainers);
   if (isLoading) return <Spinner className="mx-auto" />;
   return (
     <div>
