@@ -23,7 +23,9 @@ import { Link } from "react-router-dom";
 import Pagination from "../components/Pagination";
 const AllClassPage = () => {
   const [products, setProducts] = useState([]);
-
+  const [search, setSearch] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [asc, setAsc] = useState(true);
   const axiosCommon = useAxios();
   const axiosSecure = useAxiosSecure();
   const { data: classes = [], isLoading } = useQuery({
@@ -73,7 +75,7 @@ const AllClassPage = () => {
   const [count, setCount] = useState(0);
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
-  
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BASE_URL}/class-count`)
       .then((res) => res.json())
@@ -83,11 +85,11 @@ const AllClassPage = () => {
     fetch(
       `${
         import.meta.env.VITE_BASE_URL
-      }/classes?page=${currentPage}&size=${itemsPerPage}`
+      }/classes?page=${currentPage}&size=${itemsPerPage}&search=${search}`
     )
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, search]);
   const handleItemsPerPage = (e) => {
     const val = parseInt(e?.target?.value);
     console.log(val);
@@ -106,6 +108,12 @@ const AllClassPage = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchText = e.target.search.value;
+    setSearch(searchText);
+   
+  };
 
   if (isLoading) return <Spinner className="mx-auto" />;
   return (
@@ -116,6 +124,11 @@ const AllClassPage = () => {
         <link rel="canonical" href="https://synergy-fit.netlify.app" />
       </Helmet>
       <div className="my-10">
+        <form onSubmit={handleSearch}>
+          <input type="text" name="search" />
+          <input type="submit" value="Search" className="bg-teal-800 text-white font-bold mx-3 p-2 cursor-pointer rounded-lg" />
+        </form>
+
         <Typography variant="h3" color="teal">
           Explore Your Potential: Discover Our Diverse Range of Fitness Classes
         </Typography>
@@ -241,19 +254,6 @@ const AllClassPage = () => {
           <Button className="m-4" onClick={handleNextPage}>
             Next
           </Button>
-          {/* <div className="w-72">
-            <Select
-             
-              label="Select Page Content"
-              value={itemsPerPage}
-              onChange={handleItemsPerPage}
-            >
-              <Option value="5">5</Option>
-              <Option value="10">10</Option>
-              <Option value="20">20</Option>
-              <Option value="50">50</Option>
-            </Select>
-          </div> */}
         </div>
       </div>
     </div>
