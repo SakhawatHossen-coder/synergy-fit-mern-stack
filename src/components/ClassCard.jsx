@@ -9,15 +9,10 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-const ClassCard = ({ jj, trainers }) => {
+const ClassCard = ({ jj, yogaTrainer, classes }) => {
   // console.log(trainers);
   // Filter even numbers
-  const yogaTrainer = trainers.filter(function (train) {
-    return train.option2 === "Yoga";
-  });
-  // console.log(yogaTrainer);
 
-  // console.log(evenNumbers);
   return (
     <Card className="max-w-[24rem] overflow-hidden">
       <CardHeader
