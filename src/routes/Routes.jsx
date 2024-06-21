@@ -120,51 +120,99 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "all-news-letter",
-        element: <DashStat />,
+        element: (
+          <PrivateRoute>
+            <DashStat />
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-trainers-admin",
-        element: <AllTrainersAdmin />,
+        element: (
+          <PrivateRoute>
+            <AllTrainersAdmin />
+          </PrivateRoute>
+        ),
       },
       {
         path: "applied-trainers-admin",
-        element: <AppliedTrainersAdmin />,
+        element: (
+          <PrivateRoute>
+            <AppliedTrainersAdmin />
+          </PrivateRoute>
+        ),
       },
       {
         path: "balance-admin",
-        element: <BalanceAdmin />,
+        element: (
+          <PrivateRoute>
+            <BalanceAdmin />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-classes",
-        element: <AddNewClassAdmin />,
+        element: (
+          <PrivateRoute>
+            <AddNewClassAdmin />
+          </PrivateRoute>
+        ),
       },
       {
         path: "user-profile",
-        element: <UserProfile />,
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-forum",
-        element: <AddForumPage />,
+        element: (
+          <PrivateRoute>
+            <AddForumPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-slot",
-        element: <AddSlotTrainer />,
+        element: (
+          <PrivateRoute>
+            <AddSlotTrainer />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-slot",
-        element: <ManageSlotTrainer />,
+        element: (
+          <PrivateRoute>
+            <ManageSlotTrainer />
+          </PrivateRoute>
+        ),
       },
       {
         path: "activity-log",
-        element: <ActivityPage />,
+        element: (
+          <PrivateRoute>
+            <ActivityPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "recommend",
-        element: <Recommend />,
+        element: (
+          <PrivateRoute>
+            <Recommend />
+          </PrivateRoute>
+        ),
       },
     ],
   },
