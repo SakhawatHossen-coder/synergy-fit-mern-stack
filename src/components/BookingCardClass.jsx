@@ -8,8 +8,9 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-const BookingCardClass = ({tr}) => {
-     console.log(tr,"trrr")
+const BookingCardClass = ({ tr }) => {
+  console.log(tr, "trrr");
+  //  console.log(tr,"trrr")
   return (
     <Card className="mt-6 w-96">
       <CardHeader color="blue-gray" className="relative h-56">

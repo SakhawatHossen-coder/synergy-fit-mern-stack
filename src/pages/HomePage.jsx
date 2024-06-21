@@ -6,6 +6,8 @@ import TeamSection from "../components/Team-section/TeamSection";
 import Newsletter from "../components/Newsletter";
 import Slider from "../components/Slider";
 import { Helmet } from "react-helmet";
+import LatestPost from "../components/LatestPost";
+import Carousel from "../components/Carousel";
 
 const HomePage = () => {
   return (
@@ -18,7 +20,12 @@ const HomePage = () => {
       <Banner />
       <Feature />
       <About />
-      <Slider />
+      {/* <Slider /> */}
+      <div className="my-14">
+      <Carousel />
+      </div>
+        
+      <LatestPost />
       <Newsletter />
       {/* team section */}
       <TeamSection />

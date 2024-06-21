@@ -20,7 +20,7 @@ const TrainerBook = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading, setLoading } = useAuth();
 
-  console.log("timeee", trainer);
+  // console.log("timeee", trainer);
   const { data: slots = [], isLoading } = useQuery({
     queryKey: ["slots"],
     queryFn: async () => {
@@ -28,7 +28,7 @@ const TrainerBook = () => {
       return data;
     },
   });
-  console.log(slots);
+  // console.log(slots);
   //
   //classes
 
@@ -58,10 +58,12 @@ const TrainerBook = () => {
       return data;
     },
   });
-  console.log(trainers, "from book--");
+  // console.log(trainers, "from book--");
 
   const classTrainer = classes.filter(function (cls) {
     // return cls.option2 === "Yoga";
+    console.log(cls.Tags==="HIIT");
+    console.log(cls.Tags==="Yoga");
     let yoga = cls.Tags[0];
     let hiit = cls.Tags[1];
     let strtrain = cls.Tags[2];
@@ -76,7 +78,7 @@ const TrainerBook = () => {
   const hiitTrainer = trainers.filter(function (train) {
     return train.option3 === "HIIT";
   });
-  console.log(yogaTrainer);
+  console.log(strengthTrainer);
 
   if (isLoading) return <Spinner className="w-full mx-auto" />;
 
@@ -104,9 +106,13 @@ const TrainerBook = () => {
         </div>
       </Typography>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10">
-        {strengthTrainer?.map((tr, idx) => (
-          <BookingCardClass tr={tr} />
-        ))}
+        {strengthTrainer?.map((tr, idx) => {
+          const val = classes.filter(function (cls) {
+            return tr.option1 === cls.Tags;
+          });
+          console.log(val);
+          return <BookingCardClass tr={tr} />;
+        })}
         {yogaTrainer?.map((tr, idx) => (
           <BookingCardClassYoga />
         ))}
