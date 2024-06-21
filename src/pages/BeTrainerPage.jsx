@@ -15,8 +15,8 @@ const BeTrainerPage = () => {
   let navigate = useNavigate();
   const { user, loading, setLoading } = useAuth();
   const options = [
-    { value: "Saturday", label: "Saturday" },
     { value: "Sunday", label: "Sunday" },
+    { value: "Saturday", label: "Saturday" },
     { value: "Monday", label: "Monday" },
     { value: "Tuesday", label: "Tuesday" },
     { value: "Wednesday", label: "Wednesday" },
