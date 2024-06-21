@@ -11,8 +11,8 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 const TrainerProfile = ({ trainer }) => {
-  const { fullName, experience, slot, image, _id, timeSlot } = trainer;
-  console.log(timeSlot);
+  const { fullName, experience, slot, image, _id, timeSlot,option1,option2,option3 } = trainer;
+
   return (
     <div>
       <Card className="w-96">

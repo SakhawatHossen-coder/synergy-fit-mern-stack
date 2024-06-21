@@ -3,8 +3,10 @@ import Glide from "@glidejs/glide";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Spinner } from "@material-tailwind/react";
 const Carousel = () => {
   const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxios();
   const {
     data: users = [],
     isLoading,
@@ -12,11 +14,11 @@ const Carousel = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/registered-user`);
+      const { data } = await axiosCommon.get(`/registered-user`);
       return data;
     },
   });
-  console.log(users);
+  // console.log(users);
   useEffect(() => {
     const slider = new Glide(".glide-06", {
       type: "carousel",
@@ -44,7 +46,7 @@ const Carousel = () => {
       slider.destroy();
     };
   }, []);
-
+ 
   return (
     <>
       {/*<!-- Component: Card Carousel --> */}
@@ -159,9 +161,7 @@ const Carousel = () => {
                             className="max-w-full shrink-0 rounded-full"
                           />
                           <div className="flex flex-col gap-1">
-                            <span className="font-bold uppercase">
-                              {users[5].name}
-                            </span>
+                            <span className="font-bold uppercase">David</span>
                             <cite className="not-italic">
                               <a href="http://www.microsoft.com">Member</a>
                             </cite>
@@ -295,7 +295,7 @@ const Carousel = () => {
                             />
                             <div className="flex flex-col gap-1">
                               <span className="font-bold uppercase">
-                                {users[3].name}
+                                Jhonson
                               </span>
                               <cite className="not-italic">
                                 <a href="http://www.microsoft.com">Member</a>
@@ -431,9 +431,7 @@ const Carousel = () => {
                               className="max-w-full shrink-0 rounded-full"
                             />
                             <div className="flex flex-col gap-1">
-                              <span className="font-bold uppercase">
-                                {users[2].name}
-                              </span>
+                              <span className="font-bold uppercase">Rodri</span>
                               <cite className="not-italic">
                                 <a href="http://www.microsoft.com">Member</a>
                               </cite>

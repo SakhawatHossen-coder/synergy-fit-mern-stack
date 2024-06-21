@@ -27,15 +27,15 @@ const DetailsTrainer = () => {
       return data;
     },
   });
-  console.log(trainer, "as");
+  // console.log(trainer, "as");
 
-  const { data: slots = [] } = useQuery({
-    queryKey: ["slots"],
-    queryFn: async () => {
-      const { data } = await axiosSecure.get(`/trainer-slot/${trainer?.email}`);
-      return data;
-    },
-  });
+  // const { data: slots = [] } = useQuery({
+  //   queryKey: ["slots"],
+  //   queryFn: async () => {
+  //     const { data } = await axiosSecure.get(`/trainer-slot/${trainer?.email}`);
+  //     return data;
+  //   },
+  // });
   // console.log(slots);
   if (isLoading) return <Spinner className="w-full mx-auto" />;
 

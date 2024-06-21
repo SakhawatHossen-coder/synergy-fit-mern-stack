@@ -68,16 +68,15 @@ const SlotForm = ({ t, isLoading }) => {
   let classTag = () =>
     classes?.map((cls, idx) => {
       return { value: cls.Tags[0], label: cls.Tags[0] };
-      return cls.Tags[0];
-      let newArr = [];
-      // newArr.push(cls.Tags);
-      console.log(cls.Tags);
-      // console.log(cls.Tags[1])
-      cls?.Tags?.map((val) => {
-        // console.log(val.value);
-
-        newArr.push(val);
-      });
+      // return cls.Tags[0];
+      // let newArr = [];
+      // // newArr.push(cls.Tags);
+      // console.log(cls.Tags);
+      // // console.log(cls.Tags[1])
+      // cls?.Tags?.map((val) => {
+      //   // console.log(val.value);
+      //   newArr.push(val);
+      // });
       // setArr(newArr);
     });
   // console.log(t);

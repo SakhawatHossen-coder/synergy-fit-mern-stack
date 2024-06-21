@@ -78,11 +78,7 @@ export const router = createBrowserRouter([
       },
       {
         path: `/trainer-details/:id`,
-        element: (
-          <PrivateRoute>
-            <DetailsTrainer />
-          </PrivateRoute>
-        ),
+        element: <DetailsTrainer />,
       },
       {
         path: `/trainer-booking/:id/:day/:trainer`,

@@ -32,15 +32,6 @@ const TrainerBook = () => {
   //
   //classes
 
-  const { data: classes = [] } = useQuery({
-    queryKey: ["class"],
-    queryFn: async () => {
-      const { data } = await axiosCommon.get("/class");
-      return data;
-    },
-  });
-  //
-
   const { data: train = {}, refetch } = useQuery({
     queryKey: ["trainer"],
     queryFn: async () => {
@@ -48,7 +39,14 @@ const TrainerBook = () => {
       return data;
     },
   });
-
+  const { data: proshika = {} } = useQuery({
+    queryKey: ["trainersss"],
+    queryFn: async () => {
+      const { data } = await axiosCommon.get(`/trainer`);
+      return data;
+    },
+  });
+  console.log(proshika);
   const { data: trainers = [] } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
@@ -58,12 +56,22 @@ const TrainerBook = () => {
       return data;
     },
   });
-  // console.log(trainers, "from book--");
+  console.log(trainers, "from book--");
+
+  const { data: classes = [] } = useQuery({
+    queryKey: ["class"],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/trainer-class/${train?.email}`);
+      return data;
+    },
+  });
+  //
+  console.log(classes, "single-clas");
 
   const classTrainer = classes.filter(function (cls) {
     // return cls.option2 === "Yoga";
-    console.log(cls.Tags==="HIIT");
-    console.log(cls.Tags==="Yoga");
+    console.log(cls.Tags === "HIIT");
+    console.log(cls.Tags === "Yoga");
     let yoga = cls.Tags[0];
     let hiit = cls.Tags[1];
     let strtrain = cls.Tags[2];

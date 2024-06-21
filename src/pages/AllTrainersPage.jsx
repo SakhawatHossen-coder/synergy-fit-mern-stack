@@ -4,14 +4,15 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@material-tailwind/react";
 import { Helmet } from "react-helmet";
+import useAxios from "../hooks/useAxios";
 
 const AllTrainersPage = () => {
-  // const axiosCommon = useAxios();
-  const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxios();
+  // const axiosSecure = useAxiosSecure();
   const { data: trainers = [], isLoading } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/trainer`);
+      const { data } = await axiosCommon.get(`/trainer`);
       return data;
     },
   });
