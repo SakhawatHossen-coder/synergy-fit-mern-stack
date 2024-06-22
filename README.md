@@ -6,7 +6,7 @@ This is the official repository for SynargyFit, a website dedicated to empowerin
 
 **Admin Login:**
 
-- Username: Admin
+- email: jasim@gmail.com
 - Password: 123456
 
 **Website Features:**
