@@ -36,13 +36,13 @@ const Modal = ({
     },
     onSuccess: (data) => {
       refetch();
-      console.log(data);
+      // console.log(data);
       toast.success("User role updated successfully!");
       setIsOpen(false);
     },
   });
   const modalHandler = async (selected) => {
-    console.log("I want to be a trainer");
+    // console.log("I want to be a trainer");
     if (user.email === email) {
       toast.error("Action Not Allowed");
       return setIsOpen(false);

@@ -87,14 +87,14 @@ const SlotForm = ({ t, isLoading }) => {
       return data;
     },
     onSuccess: () => {
-      console.log("Slot saved successfully");
+      // console.log("Slot saved successfully");
       toast.success("Slot saved successfully");
       reset();
       // navigate("/all-forum-post");
     },
   });
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     const newSlotInfo = {
       ...data,
       days: tags,

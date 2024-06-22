@@ -92,7 +92,7 @@ const AllClassPage = () => {
   }, [currentPage, itemsPerPage, search]);
   const handleItemsPerPage = (e) => {
     const val = parseInt(e?.target?.value);
-    console.log(val);
+    // console.log(val);
     setItemsPerPage(val);
     setCurrentPage(0);
   };

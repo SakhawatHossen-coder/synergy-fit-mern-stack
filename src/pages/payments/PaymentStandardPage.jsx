@@ -11,7 +11,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
 const PaymentStandardPage = () => {
    const { id } = useParams();
-   console.log(id);
+  
    const axiosCommon = useAxios();
    const {
      data: traine = {},

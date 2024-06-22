@@ -54,7 +54,7 @@ const AddForumPage = () => {
       return data;
     },
     onSuccess: () => {
-      console.log("Forum post saved successfully");
+      // console.log("Forum post saved successfully");
       toast.success("Forum post saved successfully");
       reset();
       navigate("/all-forum-post");
@@ -62,7 +62,7 @@ const AddForumPage = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     const newClassInfo = {
       ...data,
       userRole: "none",

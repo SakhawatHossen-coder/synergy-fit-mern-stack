@@ -28,7 +28,7 @@ const ActivityPage = () => {
   const Trainer = trainers?.filter(function (train) {
     return train?.status === "Pending";
   });
-  console.log(Trainer);
+  // console.log(Trainer);
   if (isLoading) return <Spinner className="mx-auto" />;
   return (
     <div>

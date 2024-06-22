@@ -52,7 +52,7 @@ const BeTrainerPage = () => {
       return data;
     },
     onSuccess: () => {
-      console.log("data saved successfully");
+      // console.log("data saved successfully");
       toast.success("Your Application for Trainer Successful!");
       reset();
       navigate("/");
@@ -66,7 +66,7 @@ const BeTrainerPage = () => {
       .filter(([, isChecked]) => isChecked) // Filter checked options
       .map(([optionName]) => optionName); // Extract option names
 
-    console.log("Selected options:", selectedOptions);
+    // console.log("Selected options:", selectedOptions);
     const newTrainerInfo = {
       ...data,
       email: user?.email,
@@ -75,7 +75,7 @@ const BeTrainerPage = () => {
       status: "Pending",
       userRole: "Member",
     };
-    console.log(newTrainerInfo);
+    // console.log(newTrainerInfo);
 
     try {
       //post to server

@@ -50,7 +50,7 @@ const LoginPage = () => {
       }
       if (result.data.insertedId) {
         navigate("/");
-        console.log("db save");
+        // console.log("db save");
         return toast.success("User created Successfully!");
       }
     } catch (err) {

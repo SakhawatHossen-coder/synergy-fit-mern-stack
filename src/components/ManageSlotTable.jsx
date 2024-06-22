@@ -28,7 +28,7 @@ const ManageSlotTable = ({ slots, payments, user, refetch }) => {
     },
     onSuccess: (data) => {
       refetch();
-      console.log(data);
+      // console.log(data);
       toast.success("Slot Delete successfully!");
       setIsOpen(false);
     },

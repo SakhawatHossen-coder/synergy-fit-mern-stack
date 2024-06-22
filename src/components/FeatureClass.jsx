@@ -25,7 +25,7 @@ const FeatureClass = () => {
       return data;
     },
   });
-  console.log(featureClass);
+//   console.log(featureClass);
   return (
     <div>
       <Typography variant="h2" color="teal" className="my-8 font-bold">

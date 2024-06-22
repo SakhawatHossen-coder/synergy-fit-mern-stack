@@ -47,7 +47,7 @@ const AddNewClassAdmin = () => {
       return data;
     },
     onSuccess: () => {
-      console.log("Class data saved successfully");
+      // console.log("Class data saved successfully");
       toast.success("Class data saved successfully");
       // navigate("/")
       reset();

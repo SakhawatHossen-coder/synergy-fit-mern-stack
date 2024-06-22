@@ -12,7 +12,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
 const PaymentPremiumPage = () => {
   const { id } = useParams();
-  console.log(id);
+ 
   const axiosCommon = useAxios();
   const axiosSecure = useAxiosSecure();
   const {

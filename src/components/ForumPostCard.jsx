@@ -11,6 +11,7 @@ import {
 import { FaUpDown } from "react-icons/fa6";
 import { BiDownArrow, BiDownvote, BiUpArrow, BiUpvote } from "react-icons/bi";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const ForumPostCard = ({ post }) => {
   // console.log(post);
@@ -23,6 +24,7 @@ const ForumPostCard = ({ post }) => {
   const [dis, setDis] = useState("");
   const [hasVoted, setHasVoted] = useState(false);
   const [disable, setDisable] = useState("");
+  const navigate=useNavigate()
   const handleUpvote = () => {
     if (user && !hasVoted) {
       setVoteCount(voteCount + 1);
@@ -30,7 +32,7 @@ const ForumPostCard = ({ post }) => {
       setVal("filled");
       setHasVoted(true);
     } else {
-      console.log("not logged in");
+     navigate("/login");
 
       // Handle user not logged in scenario (e.g., display login message)
     }
@@ -43,7 +45,8 @@ const ForumPostCard = ({ post }) => {
       setHasVoted(true);
     } else {
       // Handle user not logged in scenario
-      console.log("not logged in");
+          navigate("/login");
+
     }
   };
   // console.log(post);

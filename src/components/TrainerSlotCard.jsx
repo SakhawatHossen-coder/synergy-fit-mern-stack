@@ -73,7 +73,7 @@ const TrainerSlotCard = ({ trainer }) => {
               <tbody>
                 <tr className="text-center h-20">
                   {weekDays.map((singleDay, idx) => {
-                    console.log(singleDay);
+                    // console.log(singleDay);
                     return (
                       <td
                         key={idx}

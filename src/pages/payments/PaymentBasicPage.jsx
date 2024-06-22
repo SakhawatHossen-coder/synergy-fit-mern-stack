@@ -18,7 +18,7 @@ import { useQuery } from "@tanstack/react-query";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 const PaymentBasicPage = () => {
   const { id } = useParams();
-  console.log(id);
+
   const axiosCommon = useAxios();
   const {
     data: traine = {},

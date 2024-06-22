@@ -6,7 +6,7 @@ import { Badge, Typography } from "@material-tailwind/react";
 const TrainerBookingPage = () => {
   const { time } = useParams();
   const { trainer } = useParams();
-  console.log("timeee", time);
+ 
   return (
     <div>
       <div className="mt-10">

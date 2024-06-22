@@ -30,7 +30,7 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
     },
     onSuccess: (data) => {
       refetch();
-      console.log(data);
+      // console.log(data);
       toast.success("User role updated successfully!");
       setIsOpen(false);
     },
@@ -48,7 +48,7 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
       toast.error(err.message);
     }
   };
-  console.log(openn);
+  // console.log(openn);
   return (
     <>
       <tr className="even:bg-blue-gray-50/50">
