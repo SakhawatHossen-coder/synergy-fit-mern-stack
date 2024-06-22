@@ -46,7 +46,7 @@ const TrainerBook = () => {
       return data;
     },
   });
-  console.log(proshika);
+  // console.log(proshika);
   const { data: trainers = [] } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
@@ -56,27 +56,28 @@ const TrainerBook = () => {
       return data;
     },
   });
-  console.log(trainers, "from book--");
+  // console.log(trainers, "from book--");
 
   const { data: classes = [] } = useQuery({
     queryKey: ["class"],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/trainer-class/${train?.email}`);
+      const { data } = await axiosCommon.get(`/class`);
       return data;
     },
   });
   //
-  console.log(classes, "single-clas");
+  // console.log(classes, "single-clas");
 
-  const classTrainer = classes.filter(function (cls) {
-    // return cls.option2 === "Yoga";
-    console.log(cls.Tags === "HIIT");
-    console.log(cls.Tags === "Yoga");
-    let yoga = cls.Tags[0];
-    let hiit = cls.Tags[1];
-    let strtrain = cls.Tags[2];
-    // console.log(yoga.includes())
+  const HiitTrainer = classes.filter(function (cls) {
+    return cls.Tags[0] === "HIIT";
   });
+  const STRTrainer = classes.filter(function (cls) {
+    return cls.Tags[0] === "Strength Training";
+  });
+  const YOGATrainer = classes.filter(function (cls) {
+    return cls.Tags[0] === "Yoga";
+  });
+  // console.log(classTrainer)
   const yogaTrainer = trainers.filter(function (train) {
     return train.option2 === "Yoga";
   });
@@ -86,7 +87,7 @@ const TrainerBook = () => {
   const hiitTrainer = trainers.filter(function (train) {
     return train.option3 === "HIIT";
   });
-  console.log(strengthTrainer);
+  console.log(yogaTrainer);
 
   if (isLoading) return <Spinner className="w-full mx-auto" />;
 
@@ -113,20 +114,18 @@ const TrainerBook = () => {
           ))}
         </div>
       </Typography>
+      <Typography variant="h2" color="teal" className="font-bold my-10">
+        Available Class For Trainer
+      </Typography>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10">
-        {strengthTrainer?.map((tr, idx) => {
-          const val = classes.filter(function (cls) {
-            return tr.option1 === cls.Tags;
-          });
-          console.log(val);
-          return <BookingCardClass tr={tr} />;
-        })}
-        {yogaTrainer?.map((tr, idx) => (
-          <BookingCardClassYoga />
-        ))}
-        {hiitTrainer?.map((tr, idx) => (
-          <BookingCardClassHiit tr={tr} />
-        ))}
+        {strengthTrainer.length > 0 &&
+          STRTrainer?.map((tr, idx) => {
+            return <BookingCardClass tr={tr} />;
+          })}
+        {yogaTrainer.length > 0 &&
+          YOGATrainer?.map((tr, idx) => <BookingCardClassYoga tr={tr} />)}
+        {hiitTrainer.length > 0 &&
+          HiitTrainer?.map((tr, idx) => <BookingCardClassHiit tr={tr} />)}
       </div>
       <PricingTable trainer={trainer} trainers={trainers} day={day} />
     </div>
