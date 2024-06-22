@@ -8,6 +8,7 @@ import Slider from "../components/Slider";
 import { Helmet } from "react-helmet";
 import LatestPost from "../components/LatestPost";
 import Carousel from "../components/Carousel";
+import FeatureClass from "../components/FeatureClass";
 
 const HomePage = () => {
   return (
@@ -21,6 +22,7 @@ const HomePage = () => {
       <Feature />
       <About />
       {/* <Slider /> */}
+      <FeatureClass/>
       <div className="my-14">
       <Carousel />
       </div>
