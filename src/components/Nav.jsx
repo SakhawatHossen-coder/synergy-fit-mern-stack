@@ -12,14 +12,14 @@ const Nav = () => {
     <>
       <NavLink to="/">
         <li>
-          <Button color="teal" className="btn sans">
+          <Button color="teal" >
             Home
           </Button>
         </li>
       </NavLink>
       <NavLink to="/all-trainers">
         <li>
-          <Button color="teal" className="btn pop">
+          <Button color="teal" >
             All Trainer
           </Button>
         </li>
@@ -27,7 +27,7 @@ const Nav = () => {
       <NavLink to="/all-class">
         <li>
           {" "}
-          <Button color="teal" className="btn pop">
+          <Button color="teal" >
             All Classes
           </Button>
         </li>
@@ -35,7 +35,7 @@ const Nav = () => {
       <NavLink to="/all-forum-post">
         <li>
           {" "}
-          <Button color="teal" className="btn pop">
+          <Button color="teal" >
             Forums
           </Button>
         </li>
