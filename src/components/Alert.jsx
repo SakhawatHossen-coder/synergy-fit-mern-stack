@@ -4,7 +4,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
-const Alert = ({ trainer }) => {
+const Alert = ({ trainer,refetch }) => {
   const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
   const { mutateAsync } = useMutation({

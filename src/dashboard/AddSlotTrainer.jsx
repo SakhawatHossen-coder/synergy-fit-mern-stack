@@ -24,6 +24,7 @@ const AddSlotTrainer = () => {
     },
   });
   // console.log(trainer);
+  if (loading) return <Spinner className="mx-auto" />;
   if (isLoading) return <Spinner className="mx-auto" />;
 
   return (
@@ -39,9 +40,10 @@ const AddSlotTrainer = () => {
             Add New Slot
           </h2>
         </div>
-        {trainer?.map((t, idx) => (
-          <SlotForm isLoading={isLoading} key={idx} t={t} />
-        ))}
+        {trainer.length > 0 &&
+          trainer?.map((t, idx) => (
+            <SlotForm isLoading={isLoading} key={idx} t={t} />
+          ))}
       </div>
     </>
   );

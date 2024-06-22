@@ -109,7 +109,7 @@ const AllTrainersAdmin = () => {
                           >
                             Delete
                           </button> */}
-                          <Alert trainer={trainer} />
+                          <Alert refetch={refetch} trainer={trainer} />
                         </td>
                       </tr>
                     );

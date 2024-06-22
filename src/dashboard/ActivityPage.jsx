@@ -67,9 +67,7 @@ const ActivityPage = () => {
                     <MdRemoveRedEye size={15} onClick={handleModal} />
                   </Button>
                 </PopoverHandler>
-                <PopoverContent>
-                  This is a very beautiful popover, show some love.
-                </PopoverContent>
+                <PopoverContent>No Comments</PopoverContent>
               </Popover>
             </div>
           </div>

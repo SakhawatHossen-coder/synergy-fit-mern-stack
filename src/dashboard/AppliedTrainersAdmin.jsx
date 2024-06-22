@@ -35,7 +35,7 @@ const AppliedTrainersAdmin = () => {
     return train.status === "Pending";
   });
   if (isLoading) return <Spinner className="mx-auto" />;
-  // console.log(trainers);
+ 
   return (
     <div>
       <Helmet>

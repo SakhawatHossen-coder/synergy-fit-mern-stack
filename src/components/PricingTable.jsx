@@ -8,7 +8,7 @@ import { TbSocial, TbYoga } from "react-icons/tb";
 import { Link, useParams } from "react-router-dom";
 
 const PricingTable = ({ trainer, day, trainers }) => {
-  console.log(trainers);
+
     const { id } = useParams();
 
   let basic = (

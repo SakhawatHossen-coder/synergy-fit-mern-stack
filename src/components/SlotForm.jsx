@@ -68,6 +68,10 @@ const SlotForm = ({ t, isLoading }) => {
   let classTag = () =>
     classes?.map((cls, idx) => {
       return { value: cls.Tags[0], label: cls.Tags[0] };
+      // return {
+      //   value: cls.className.slice(0, 5),
+      //   label: cls.className.slice(0, 5),
+      // };
       // return cls.Tags[0];
       // let newArr = [];
       // // newArr.push(cls.Tags);
@@ -79,7 +83,7 @@ const SlotForm = ({ t, isLoading }) => {
       // });
       // setArr(newArr);
     });
-  // console.log(t);
+
   const options2 = classTag();
   const { mutateAsync } = useMutation({
     mutationFn: async (slotData) => {
@@ -90,7 +94,7 @@ const SlotForm = ({ t, isLoading }) => {
       // console.log("Slot saved successfully");
       toast.success("Slot saved successfully");
       reset();
-      // navigate("/all-forum-post");
+      navigate("/dashboard");
     },
   });
   const onSubmit = async (data) => {
@@ -114,6 +118,7 @@ const SlotForm = ({ t, isLoading }) => {
       setLoading(false);
     }
   };
+  if (isLoading) return <Spinner />;
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

@@ -21,7 +21,7 @@ const TrainerBook = () => {
   const { user, loading, setLoading } = useAuth();
 
   // console.log("timeee", trainer);
-  const { data: slots = [], isLoading } = useQuery({
+  const { data: slots = [] } = useQuery({
     queryKey: ["slots"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/trainer-slot/${user?.email}`);
@@ -47,7 +47,7 @@ const TrainerBook = () => {
     },
   });
   // console.log(proshika);
-  const { data: trainers = [] } = useQuery({
+  const { data: trainers = [], isLoading } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -87,7 +87,6 @@ const TrainerBook = () => {
   const hiitTrainer = trainers.filter(function (train) {
     return train.option3 === "HIIT";
   });
-  console.log(yogaTrainer);
 
   if (isLoading) return <Spinner className="w-full mx-auto" />;
 

@@ -30,7 +30,7 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
     },
     onSuccess: (data) => {
       refetch();
-      // console.log(data);
+
       toast.success("User role updated successfully!");
       setIsOpen(false);
     },
@@ -104,8 +104,6 @@ const AppTrainerTable = ({ train, setIsOpen, refetch }) => {
                     text: `${fullName}has become Trainer.`,
                     icon: "success",
                   });
-                } else {
-                  handleSubmit();
                 }
               });
             }}
