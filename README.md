@@ -9,6 +9,16 @@ This is the official repository for SynargyFit, a website dedicated to empowerin
 - email: jasim@gmail.com
 - Password: 123456
 
+ **Steps to Clone and Run This Project**
+ --make sure you have git installed in your computer
+ 
+Navigate the terminal to the directory where you want the cloned repository saved. you can use the cd command for this.
+use the git clone command followed by the URL you copied from GitHub. For example:
+
+    git clone https://github.com/SakhawatHossen-coder/synergy-fit-mern-stack.git
+**Running the project**
+navigate into the cloned directory using the cd command again    
+
 **Website Features:**
 
 1. **Personalized Fitness Tracking:** Monitor your activity data, including steps, distance, calories burned, and sleep patterns. Analyze trends and set customized goals to stay on track.
